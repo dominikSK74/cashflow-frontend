@@ -7,11 +7,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 :root{
-  --my-white: #ebe7de;
-  --my-green: #546d60;
-  --my-yellow1: #7c794c;
-  --my-yellow2: #a48539;
-  --my-yellow3: #cd9126;
+  --main-color: #2a9d8f;
+  --secound-color: #e76f51;
+  --my-orange: #f4a261;
+  --my-yellow: #e9c46a;
+  --my-dark-blue: #264653;
 }
 
 html, body { height: 100%; }

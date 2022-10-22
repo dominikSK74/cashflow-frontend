@@ -1,34 +1,25 @@
-<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-<img class="wave" src="img/wave.png">
-<div class="container">
-  <div class="img">
-    <img src="img/bg.svg">
+<section class="main">
+  <img id="wave" src="assets/images/wave.png">
+  <div id="img">
+    <img id="phone" src="assets/images/phone.png">
   </div>
-  <div class="login-content">
-    <form [formGroup]="loginForm">
-      <img src="img/avatar.svg">
-      <h2 class="title">CashFlow</h2>
-      <div class="input-div one">
-        <div class="i">
-          <i class="fas fa-user"></i>
-        </div>
-        <div class="div">
-          <input type="text" class="input" placeholder="Email" formControlName="email" required>
-        </div>
-      </div>
-      <div class="input-div pass">
-        <div class="i">
-          <i class="fas fa-lock"></i>
-        </div>
-        <div class="div">
-          <input type="password" class="input" placeholder="Password" formControlName="password" required>
-        </div>
-      </div>
-      <span class="error" *ngIf="email && email.invalid && email.touched ||
-       password && password.invalid && password.touched">Invalid data</span>
-      <a href="#">Forgot Password?</a>
-      <button mat-raised-button [disabled]="loginForm.invalid" (click)="loginUser()" class="btn">Login</button>
-      <a href="#" class="register">Don't have an account? Sign Up</a>
-    </form>
-  </div>
-</div>
+  <form [formGroup]="loginForm">
+    <img id="logo" src="assets/images/logo.png">
+    <br>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Email" formControlName="email" required>
+      <mat-hint *ngIf="email && email.invalid && email.touched">Invalid email</mat-hint>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <input matInput type="password" placeholder="Password" formControlName="password" required>
+      <mat-hint *ngIf="password && password.invalid && password.touched">Invalid password</mat-hint>
+    </mat-form-field>
+    <br>
+    <a href="#" class="forgot-pass">Forgot password?</a>
+    <br>
+    <button mat-raised-button>Login</button>
+    <br>
+    <a href="#" class="sign-up">Don't have an account? Sign Up</a>
+  </form>
+</section>
