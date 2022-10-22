@@ -1,10 +1,10 @@
 <section class="main">
-  <img id="wave" src="assets/images/wave.png">
+  <img id="wave" src="../../../assets/images/wave.png">
   <div id="img">
-    <img id="phone" src="assets/images/phone.png">
+    <img id="phone" src="../../../assets/images/phone.png">
   </div>
-  <form [formGroup]="loginForm">
-    <img id="logo" src="assets/images/logo.png">
+  <form [formGroup]="registerForm">
+    <img id="logo" src="../../../assets/images/logo.png">
     <br>
     <mat-form-field appearance="outline">
       <input matInput placeholder="Email" formControlName="email" required>
@@ -16,10 +16,13 @@
       <mat-hint *ngIf="password && password.invalid && password.touched">Invalid password</mat-hint>
     </mat-form-field>
     <br>
-    <a href="#" class="forgot-pass">Forgot password?</a>
+    <mat-form-field appearance="outline">
+      <input matInput type="password" placeholder="Confirm password" formControlName="password1" required>
+      <mat-hint *ngIf="passwordMatchError">Password not a match</mat-hint>
+    </mat-form-field>
     <br>
-    <button mat-raised-button>Login</button>
+    <button mat-raised-button>Register</button>
     <br>
-    <a href="#" class="sign-up">Don't have an account? Sign Up</a>
+    <a href="#" class="log-in">Have already an account? Login here</a>
   </form>
 </section>

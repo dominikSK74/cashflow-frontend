@@ -1,0 +1,25 @@
+<section class="main">
+  <img id="wave" src="../../../assets/images/wave.png">
+  <div id="img">
+    <img id="phone" src="../../../assets/images/phone.png">
+  </div>
+  <form [formGroup]="loginForm">
+    <img id="logo" src="../../../assets/images/logo.png">
+    <br>
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Email" formControlName="email" required>
+      <mat-hint *ngIf="email && email.invalid && email.touched">Invalid email</mat-hint>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <input matInput type="password" placeholder="Password" formControlName="password" required>
+      <mat-hint *ngIf="password && password.invalid && password.touched">Invalid password</mat-hint>
+    </mat-form-field>
+    <br>
+    <a href="#" class="forgot-pass">Forgot password?</a>
+    <br>
+    <button mat-raised-button>Login</button>
+    <br>
+    <a href="#" class="sign-up">Don't have an account? Sign Up</a>
+  </form>
+</section>
