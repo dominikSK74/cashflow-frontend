@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "./custom.validators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -8,6 +9,10 @@ import {CustomValidators} from "./custom.validators";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+
+  constructor(private router:Router) {
+  }
+
 
   registerForm = new FormGroup({
     email:new FormControl('', [Validators.required, Validators.email]),
@@ -34,4 +39,7 @@ export class RegisterComponent {
     );
   }
 
+  login(){
+    this.router.navigate(["/login"]);
+  }
 }

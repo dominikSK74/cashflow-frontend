@@ -9,6 +9,9 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent{
 
+  constructor(private router:Router) {
+  }
+
   loginForm = new FormGroup({
     email:new FormControl('', [Validators.required, Validators.email]),
     password:new FormControl('', [Validators.required, Validators.minLength(8)]),
@@ -24,5 +27,9 @@ export class LoginComponent{
 
   get password(){
     return this.loginForm.get('password');
+  }
+
+  register(){
+    this.router.navigate(["/register"]);
   }
 }
