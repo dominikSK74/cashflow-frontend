@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,7 +10,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class ForgotPasswordComponent{
 
-  constructor(private snackBar:MatSnackBar) {}
+  constructor(private snackBar:MatSnackBar,
+              private router:Router) {}
 
 
   loginForm = new FormGroup({
@@ -32,5 +34,9 @@ export class ForgotPasswordComponent{
 
   send(){
     this.openSnackBar("Send link");
+  }
+
+  login(){
+    this.router.navigate(["/login"]);
   }
 }

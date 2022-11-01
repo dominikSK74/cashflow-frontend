@@ -32,4 +32,8 @@ export class LoginComponent{
   register(){
     this.router.navigate(["/register"]);
   }
+
+  remindPassword(){
+    this.router.navigate(["/login/identify"]);
+  }
 }

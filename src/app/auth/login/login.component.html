@@ -16,7 +16,7 @@
       <mat-hint *ngIf="password && password.invalid && password.touched">Invalid password</mat-hint>
     </mat-form-field>
     <br>
-    <a href="#" class="forgot-pass">Forgot password?</a>
+    <a class="forgot-pass" (click)="remindPassword()">Forgot password?</a>
     <br>
     <button mat-raised-button>Login</button>
     <br>
