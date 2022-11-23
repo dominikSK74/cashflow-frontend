@@ -13,6 +13,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { RegisterComponent } from './auth/register/register.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

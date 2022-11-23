@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "./custom.validators";
 import {Router} from "@angular/router";
+import {RegisterService} from "../services/register.service";
+import {SnackBarService} from "../../services/snack-bar.service";
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,9 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent {
 
-  constructor(private router:Router) {
+  constructor(private router:Router,
+              private registerService:RegisterService,
+              private snackBarService:SnackBarService) {
   }
 
 
@@ -41,5 +45,21 @@ export class RegisterComponent {
 
   login(){
     this.router.navigate(["/login"]);
+  }
+
+  register() {
+    if(this.registerForm.valid){
+      this.registerService.register(String(this.email?.value).toLowerCase(), String(this.password?.value))
+        .subscribe(() => {
+           this.router.navigate(["/login"]);
+           this.snackBarService.openGreenSnackBar("Your account has been created. You can log in");
+        },err => {
+          if(err.status === 409){
+            this.snackBarService.openRedSnackBar("This user already exists");
+          }
+        });
+    }else{
+      this.snackBarService.openRedSnackBar("Invalid Data");
+    }
   }
 }
