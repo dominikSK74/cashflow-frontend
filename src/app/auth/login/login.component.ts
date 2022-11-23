@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {LoginService} from "../../services/login.service";
+import {SnackBarService} from "../../services/snack-bar.service";
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,9 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent{
 
-  constructor(private router:Router) {
+  constructor(private router:Router,
+              private loginService:LoginService,
+              private snackBarService:SnackBarService) {
   }
 
   loginForm = new FormGroup({
@@ -18,7 +22,17 @@ export class LoginComponent{
   })
 
   loginUser(){
-    // console.warn(this.loginForm.value)
+    this.loginService.loginUser(String(this.email?.value).toLowerCase(), String(this.password?.value))
+      .subscribe(() => {
+          this.router.navigate(["/home"]);
+        },
+        () => {
+          if(this.loginForm.valid){
+            this.snackBarService.openRedSnackBar("Incorrect password or email")
+          }else{
+            this.snackBarService.openRedSnackBar("Invalid data");
+          }
+        });
   }
 
   get email(){

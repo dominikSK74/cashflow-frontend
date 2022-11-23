@@ -14,13 +14,18 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {HttpClientModule} from "@angular/common/http";
+import { HomeComponent } from './home/home.component';
+import {TokenGuard} from "./guards/token.guard";
+import {AuthGuard} from "./guards/auth.guard";
+import {LoginGuard} from "./guards/login.guard";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,7 @@ import {HttpClientModule} from "@angular/common/http";
     MatSnackBarModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [TokenGuard, AuthGuard, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
