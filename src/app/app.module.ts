@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import {RouterModule, RouterOutlet} from "@angular/router";
+import {RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
@@ -18,6 +18,9 @@ import { HomeComponent } from './home/home.component';
 import {TokenGuard} from "./guards/token.guard";
 import {AuthGuard} from "./guards/auth.guard";
 import {LoginGuard} from "./guards/login.guard";
+import { BottomNavBarComponent } from './nav-bars/bottom-nav-bar/bottom-nav-bar.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ReceiptComponent } from './receipt/receipt.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import {LoginGuard} from "./guards/login.guard";
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    HomeComponent
+    HomeComponent,
+    BottomNavBarComponent,
+    SettingsComponent,
+    ReceiptComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,9 @@ import {LoginGuard} from "./guards/login.guard";
     ReactiveFormsModule,
     MatButtonModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterLink,
+    RouterLinkActive
   ],
   providers: [TokenGuard, AuthGuard, LoginGuard],
   bootstrap: [AppComponent]

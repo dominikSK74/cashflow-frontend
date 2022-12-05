@@ -1,0 +1,33 @@
+footer{
+  position: fixed;
+  bottom: 0px;
+  overflow: hidden;
+  width: 100%;
+  height: 50px;
+  background-color: var(--main-color);
+  z-index: 1;
+}
+
+#home {
+  height: 100%;
+  width: 34%;
+}
+
+#scan, #settings {
+  height: 100%;
+  width: 33%;
+}
+
+mat-icon{
+  width: 100%;
+  height: 100%;
+  font-size: 50px;
+}
+
+.active-item {
+  color: #f4a261;
+}
+
+button {
+  color: #264653;
+}

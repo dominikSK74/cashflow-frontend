@@ -1,0 +1,13 @@
+<footer *ngIf="!hasRoute('register')&&!hasRoute('login')">
+  <button mat-button id="scan" [routerLink]="'/receipt'" [routerLinkActive]="'active-item'">
+    <mat-icon>document_scanner</mat-icon>
+  </button>
+
+  <button mat-button id="home" [routerLink]="'/home'" [routerLinkActive]="'active-item'">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <button mat-button id="settings" [routerLink]="'/settings'" [routerLinkActive]="'active-item'">
+    <mat-icon>settings</mat-icon>
+  </button>
+</footer>
