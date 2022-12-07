@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import {RouterLink, RouterLinkActive, RouterModule, RouterOutlet} from "@angular/router";
+import {RouterLink, RouterLinkActive, RouterLinkWithHref, RouterModule, RouterOutlet} from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
@@ -21,6 +21,7 @@ import {LoginGuard} from "./guards/login.guard";
 import { BottomNavBarComponent } from './nav-bars/bottom-nav-bar/bottom-nav-bar.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ReceiptComponent } from './receipt/receipt.component';
+import { TopNavBarComponent } from './nav-bars/top-nav-bar/top-nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -31,23 +32,25 @@ import { ReceiptComponent } from './receipt/receipt.component';
     HomeComponent,
     BottomNavBarComponent,
     SettingsComponent,
-    ReceiptComponent
+    ReceiptComponent,
+    TopNavBarComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterOutlet,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    HttpClientModule,
-    RouterLink,
-    RouterLinkActive
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterOutlet,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        HttpClientModule,
+        RouterLink,
+        RouterLinkActive,
+        RouterLinkWithHref
+    ],
   providers: [TokenGuard, AuthGuard, LoginGuard],
   bootstrap: [AppComponent]
 })

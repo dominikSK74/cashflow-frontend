@@ -1,2 +1,3 @@
+<app-top-nav-bar *ngIf="!(iPhone||iPad||android)"></app-top-nav-bar>
 <router-outlet></router-outlet>
-<app-bottom-nav-bar></app-bottom-nav-bar>
+<app-bottom-nav-bar *ngIf="(iPhone||iPad||android)&&innerWidth<=768"></app-bottom-nav-bar>

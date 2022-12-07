@@ -4,7 +4,7 @@ footer{
   overflow: hidden;
   width: 100%;
   height: 50px;
-  background-color: var(--main-color);
+  background-color: var(--my-orange);
   z-index: 1;
 }
 
@@ -25,9 +25,9 @@ mat-icon{
 }
 
 .active-item {
-  color: #f4a261;
+  color: var(--main-color);
 }
 
 button {
-  color: #264653;
+  color: dimgrey;
 }
