@@ -1,8 +1,8 @@
 {
-  "name": "cashflow-frontend",
-  "short_name": "cashflow-frontend",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "CashFlow",
+  "short_name": "CashFlow",
+  "theme_color": "#2a9d8f",
+  "background_color": "#fef7f1",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
