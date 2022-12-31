@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -22,6 +22,7 @@ import { BottomNavBarComponent } from './nav-bars/bottom-nav-bar/bottom-nav-bar.
 import { SettingsComponent } from './settings/settings.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { TopNavBarComponent } from './nav-bars/top-nav-bar/top-nav-bar.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,13 @@ import { TopNavBarComponent } from './nav-bars/top-nav-bar/top-nav-bar.component
         HttpClientModule,
         RouterLink,
         RouterLinkActive,
-        RouterLinkWithHref
+        RouterLinkWithHref,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: !isDevMode(),
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        })
     ],
   providers: [TokenGuard, AuthGuard, LoginGuard],
   bootstrap: [AppComponent]
