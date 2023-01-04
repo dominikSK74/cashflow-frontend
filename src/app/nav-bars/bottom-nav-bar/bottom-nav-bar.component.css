@@ -6,6 +6,7 @@ footer{
   height: 50px;
   background-color: var(--my-orange);
   z-index: 1;
+  box-shadow: 0px 0px 16px 0px rgba(66, 68, 90, 1);
 }
 
 #home {

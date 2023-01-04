@@ -1,1 +1,18 @@
-<p>receipt works!</p>
+<section class="main">
+  <div class="img">
+
+  </div>
+  <div class="box">
+    <div id="box-main">
+      <input type="file" id="file" #fileInput accept="image/*">
+      <button mat-raised-button (click)="fileInput.click()">
+          upload
+      </button>
+      <button mat-raised-button>enter manually</button>
+      <p id="text">
+        You must first enter some data.
+      </p>
+      <button mat-raised-button>confirm</button>
+    </div>
+  </div>
+</section>
