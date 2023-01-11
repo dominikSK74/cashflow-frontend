@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatLegacyFormFieldModule as MatFormFieldModule} from "@angular/material/legacy-form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatLegacyInputModule as MatInputModule} from "@angular/material/legacy-input";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatLegacyButtonModule as MatButtonModule} from "@angular/material/legacy-button";
 import { RegisterComponent } from './auth/register/register.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
@@ -23,6 +23,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { TopNavBarComponent } from './nav-bars/top-nav-bar/top-nav-bar.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { EnterManuallyComponent } from './receipt/enter-manually/enter-manually.component';
+import { BoxComponent } from './receipt/box/box.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     BottomNavBarComponent,
     SettingsComponent,
     ReceiptComponent,
-    TopNavBarComponent
+    TopNavBarComponent,
+    EnterManuallyComponent,
+    BoxComponent
   ],
     imports: [
         BrowserModule,
@@ -52,11 +56,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
         RouterLinkActive,
         RouterLink,
         ServiceWorkerModule.register('ngsw-worker.js', {
-          enabled: !isDevMode(),
-          // Register the ServiceWorker as soon as the application is stable
-          // or after 30 seconds (whichever comes first).
-          registrationStrategy: 'registerWhenStable:30000'
-        })
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        FormsModule
     ],
   providers: [TokenGuard, AuthGuard, LoginGuard],
   bootstrap: [AppComponent]

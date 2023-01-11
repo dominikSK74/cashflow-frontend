@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-receipt',
   templateUrl: './receipt.component.html',
   styleUrls: ['./receipt.component.css']
 })
-export class ReceiptComponent implements OnInit {
+export class ReceiptComponent {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
-  ngOnInit(): void {
+  enterManually(){
+    this.router.navigate(["/receipt/enter-manually"]);
   }
-
 }

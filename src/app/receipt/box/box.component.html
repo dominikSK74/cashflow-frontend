@@ -1,0 +1,18 @@
+<section id="main">
+  <button mat-icon-button (click)="deleteBox()">
+    <mat-icon>close</mat-icon>
+  </button><br>
+  <mat-form-field appearance="outline" floatLabel="auto" class="margin">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="box.name">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" floatLabel="auto" class="margin">
+    <mat-label>Cost</mat-label>
+    <input matInput pattern="^[0-9]+(\.[0-9]{1,2})?$" [(ngModel)]="box.cost">
+  </mat-form-field><br>
+
+  <mat-form-field appearance="outline" id="category">
+    <input matInput [(ngModel)]="box.categories" placeholder="kategoria">
+  </mat-form-field><br>
+</section>
