@@ -12,7 +12,8 @@
     <input matInput pattern="^[0-9]+(\.[0-9]{1,2})?$" [(ngModel)]="box.cost">
   </mat-form-field><br>
 
-  <mat-form-field appearance="outline" id="category">
-    <input matInput [(ngModel)]="box.categories" placeholder="kategoria">
+  <mat-form-field appearance="outline" id="category" (click)="selectCategoryDialog()">
+    <mat-label>Category</mat-label>
+    <input matInput [(ngModel)]="box.categories" readonly>
   </mat-form-field><br>
 </section>

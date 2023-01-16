@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {BoxService} from "../../services/box.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {CategorySelectComponent} from "../category-select/category-select.component";
 
 @Component({
   selector: 'app-box',
@@ -8,11 +10,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./box.component.css']
 })
 export class BoxComponent implements OnInit, OnDestroy {
-
   box: any = {};
 
-  constructor(private boxService:BoxService) {
-  }
+  constructor(private boxService:BoxService,
+              private dialog:MatDialog) {}
 
   ngOnInit() {
     this.boxService.addBox(this.box);
@@ -25,5 +26,13 @@ export class BoxComponent implements OnInit, OnDestroy {
   @Output() delete = new EventEmitter<number>();
   deleteBox() {
     this.delete.emit(this.boxService.getIndex(this.box));
+  }
+
+  selectCategoryDialog(){
+    const dialogRef = this.dialog.open(CategorySelectComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
