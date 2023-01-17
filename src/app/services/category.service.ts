@@ -31,11 +31,6 @@ export class CategoryService {
     });
 
     for (let i = 0; i < this.categories.length; i++){
-      console.log("====");
-      console.log(this.categories[i]);
-      console.log(name);
-      console.log("====");
-
       // @ts-ignore
       if(this.categories[i].toLowerCase() === name.toLowerCase()){
         return false;
