@@ -18,7 +18,7 @@ export class CategorySelectComponent implements OnInit{
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((data)=> {
-       let category = JSON.parse(data);
+      let category = JSON.parse(data);
       for (let i = 0; i < category.length; i++){
         //@ts-ignore
         this.items.push(category[i]);
@@ -32,12 +32,6 @@ export class CategorySelectComponent implements OnInit{
 
   addNewCategory(){
     this.selectedItem = undefined;
-    const dialogRef = this.dialog.open(AddPrivateCategoryComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      //TODO: Do category service i dodac kategorie do prywatnej kategori uzytkownika
-      //TODO: Walidacja danych
-    });
+    this.dialog.open(AddPrivateCategoryComponent);
   }
 }
