@@ -1,0 +1,11 @@
+<mat-dialog-content>
+  <h3>Enter the category name</h3>
+  <mat-form-field appearance="outline" floatLabel="auto" class="margin">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="name">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button id="cancel" mat-button mat-dialog-close>Cancel</button>
+  <button id="ok" mat-button [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

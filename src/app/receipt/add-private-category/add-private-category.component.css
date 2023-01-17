@@ -1,0 +1,21 @@
+mat-form-field {
+  width: 250px;
+}
+
+h3 {
+  color: #41403F;
+}
+
+button {
+  width: 100px;
+}
+
+#cancel {
+  background-color: darkred;
+  color: white;
+}
+
+#ok {
+  background-color: #2a9d8f;
+  color: white;
+}

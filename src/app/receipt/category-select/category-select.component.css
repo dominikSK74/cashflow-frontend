@@ -2,6 +2,31 @@ mat-dialog-content {
   overflow-x: hidden;
 }
 
+h2 {
+  color: #41403F;
+}
+
 mat-list {
   width: 250px;
+  color: #41403F;
+}
+
+.highlight {
+  background-color: #2a9d8f;
+  color: white;
+  box-shadow: 0px 0px 10px 0px rgba(66, 68, 90, 1);
+}
+
+button {
+  width: 100px;
+}
+
+#cancel {
+  color: white;
+  background-color: darkred;
+}
+
+#ok {
+  color: white;
+  background-color: #2a9d8f;
 }

@@ -29,6 +29,7 @@ import { CategorySelectComponent } from './receipt/category-select/category-sele
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatListModule} from "@angular/material/list";
 import {TokenInterceptorService} from "./services/token-interceptor.service";
+import { AddPrivateCategoryComponent } from './receipt/add-private-category/add-private-category.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {TokenInterceptorService} from "./services/token-interceptor.service";
     TopNavBarComponent,
     EnterManuallyComponent,
     BoxComponent,
-    CategorySelectComponent
+    CategorySelectComponent,
+    AddPrivateCategoryComponent
   ],
   imports: [
     BrowserModule,

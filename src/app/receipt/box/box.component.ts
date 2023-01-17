@@ -32,7 +32,7 @@ export class BoxComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CategorySelectComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.box.categories = result;
     });
   }
 }
