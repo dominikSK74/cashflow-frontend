@@ -30,6 +30,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatListModule} from "@angular/material/list";
 import {TokenInterceptorService} from "./services/token-interceptor.service";
 import { AddPrivateCategoryComponent } from './receipt/add-private-category/add-private-category.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -70,13 +72,19 @@ import { AddPrivateCategoryComponent } from './receipt/add-private-category/add-
     }),
     FormsModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [TokenGuard, AuthGuard, LoginGuard,
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService
+    },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB'
     }],
   bootstrap: [AppComponent]
 })
