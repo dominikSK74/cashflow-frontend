@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {BoxService} from "../../services/box.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
@@ -11,6 +11,15 @@ import {CategorySelectComponent} from "../category-select/category-select.compon
 })
 export class BoxComponent implements OnInit, OnDestroy {
   box: any = {};
+  @Output() delete = new EventEmitter<number>();
+
+  boxForm = new FormGroup({
+    name: new FormControl(this.box.name, [Validators.required]),
+    cost: new FormControl(this.box.cost, [Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]{1,2})?$")]),
+    categories: new FormControl(this.box.categories, [Validators.required]),
+    date: new FormControl(this.box.date, [Validators.required])
+  });
+
 
   constructor(private boxService:BoxService,
               private dialog:MatDialog) {}
@@ -23,7 +32,6 @@ export class BoxComponent implements OnInit, OnDestroy {
     this.boxService.removeBox(this.box);
   }
 
-  @Output() delete = new EventEmitter<number>();
   deleteBox() {
     this.delete.emit(this.boxService.getIndex(this.box));
   }
@@ -34,5 +42,21 @@ export class BoxComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.box.categories = result;
     });
+  }
+
+  get name() {
+    return this.box.get('name');
+  }
+
+  get cost() {
+    return this.box.get('cost');
+  }
+
+  get categories() {
+    return this.box.get('categories');
+  }
+
+  get date(){
+    return this.box.get('date');
   }
 }

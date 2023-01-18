@@ -15,7 +15,7 @@
   margin-left: 5px;
 }
 
-#date {
+#picker {
   width: 410px;
   margin-left: 5px;
 }
@@ -28,4 +28,8 @@
 
 mat-icon {
   color: rgba(66, 68, 90, 1);
+}
+
+mat-hint {
+  color: red;
 }
