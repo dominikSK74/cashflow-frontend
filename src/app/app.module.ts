@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from "@angular/router";
+import {RouterLink, RouterLinkActive, RouterModule, RouterOutlet, ROUTES, Routes} from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatLegacyFormFieldModule as MatFormFieldModule} from "@angular/material/legacy-form-field";
 import {MatIconModule} from "@angular/material/icon";
@@ -74,7 +74,7 @@ import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
     MatDialogModule,
     MatListModule,
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatNativeDateModule
   ],
   providers: [TokenGuard, AuthGuard, LoginGuard,
     {

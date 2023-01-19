@@ -1,7 +1,8 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {BoxService} from "../../services/box.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SnackBarService} from "../../services/snack-bar.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-enter-manually',
@@ -21,7 +22,9 @@ export class EnterManuallyComponent implements OnInit, OnDestroy{
   });
 
   constructor(private boxService:BoxService,
-              private snackBarService:SnackBarService) {
+              private snackBarService:SnackBarService,
+              private route:ActivatedRoute,
+              private router: Router) {
   }
   ngOnInit() {
     this.boxes = [];
@@ -52,6 +55,7 @@ export class EnterManuallyComponent implements OnInit, OnDestroy{
 
     if(valid && (this.boxes.length > 0)){
       this.snackBarService.openGreenSnackBar("good");
+      this.router.navigate(['/receipt', {data: JSON.stringify(myBoxes)}]);
     }else{
       this.snackBarService.openRedSnackBar("NOT GOOD");
     }
