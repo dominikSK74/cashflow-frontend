@@ -32,20 +32,14 @@ button {
 }
 
 #wrapper {
-  /*border: 1px solid black;*/
-  padding: 10px;
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-#fab {
-  margin-left: 10px;
-}
-
-#confirm {
-  width: 300px;
+#confirm, #add {
+  width: 210px;
   height: 55px;
   font-size: 20px;
   font-weight: bold;
@@ -54,11 +48,30 @@ button {
   color: white;
 }
 
+.margin {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 #wrapper-box {
-  /*border: solid 1px black;*/
   width: 300px;
   height: 80px;
 }
 app-box {
   padding: 10px;
+}
+
+@media screen and (max-width: 900px){
+  #confirm, #add {
+    width: 175px;
+  }
+
+  #wrapper {
+    bottom: 55px;
+    width: 370px;
+  }
+
+  #box {
+    margin-top: 20px;
+  }
 }

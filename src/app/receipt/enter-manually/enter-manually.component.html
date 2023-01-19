@@ -3,10 +3,8 @@
       <app-box (delete)="deleteBox($event)" *ngFor="let box of boxes"></app-box><br>
       <div id="wrapper-box"></div>
       <div id="wrapper">
-        <button mat-raised-button id="confirm" (click)="getValues()">confirm</button>
-        <button mat-fab (click)="addBox()" id="fab">
-          <mat-icon>add</mat-icon>
-        </button>
+        <button mat-raised-button id="add" class="margin" (click)="addBox()">add</button>
+        <button mat-raised-button id="confirm" class="margin" (click)="getValues()">confirm</button>
       </div>
   </div>
 </section>

@@ -50,7 +50,7 @@ export class EnterManuallyComponent implements OnInit, OnDestroy{
       }
     });
 
-    if(valid){
+    if(valid && (this.boxes.length > 0)){
       this.snackBarService.openGreenSnackBar("good");
     }else{
       this.snackBarService.openRedSnackBar("NOT GOOD");

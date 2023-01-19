@@ -33,3 +33,19 @@ mat-icon {
 mat-hint {
   color: red;
 }
+
+@media screen and (max-width: 900px){
+  .margin {
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 100%;
+  }
+
+  #picker {
+    width: 100%;
+  }
+
+  #category {
+    width: 100%;
+  }
+}
