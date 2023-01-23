@@ -9,14 +9,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class ReceiptComponent implements OnInit{
 
   public myArray = [];
-  option:string = "enter manually";
 
   constructor(private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       if(params.get('data')) {
-        this.option = "edit data";
         let test = JSON.parse(<string>params.get('data'));
         for(let i = 0; i<test.length; i++){
           // @ts-ignore

@@ -27,7 +27,7 @@ export class EnterManuallyComponent implements OnInit, OnDestroy{
               private router: Router) {
   }
   ngOnInit() {
-    this.boxes = [];
+   this.boxes = [];
   }
 
   ngOnDestroy() {
@@ -54,10 +54,10 @@ export class EnterManuallyComponent implements OnInit, OnDestroy{
     });
 
     if(valid && (this.boxes.length > 0)){
-      this.snackBarService.openGreenSnackBar("good");
+      this.snackBarService.openGreenSnackBar("Receipt added");
       this.router.navigate(['/receipt', {data: JSON.stringify(myBoxes)}]);
     }else{
-      this.snackBarService.openRedSnackBar("NOT GOOD");
+      this.snackBarService.openRedSnackBar("The given data is not correct");
     }
   }
 
