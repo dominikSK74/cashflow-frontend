@@ -8,15 +8,16 @@
       <button mat-raised-button (click)="fileInput.click()">
           upload
       </button>
-      <button mat-raised-button (click)="enterManually()">enter manually</button>
-      <p id="text" *ngFor="let item of myArray">
-<!--        Name: {{item.name}}<br>-->
-<!--        Cost: {{item.cost}}<br>-->
-<!--        Category: {{item.categories}}<br>-->
-<!--        Date: {{item.date}}<br>-->
-<!--        {{item}}-->
-        <mat-divider></mat-divider>
-      </p>
+      <button mat-raised-button (click)="enterManually()">{{this.option}}</button>
+      <div id="text">
+        <p *ngFor="let item of myArray">
+              Name: {{item["name"]}}<br>
+              Cost: {{item["cost"]}}<br>
+              Category: {{item["categories"]}}<br>
+              Date: {{item["date"]}}<br>
+          <mat-divider></mat-divider>
+        </p>
+      </div>
       <button mat-raised-button>confirm</button>
     </div>
   </div>

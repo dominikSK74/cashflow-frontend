@@ -34,6 +34,4 @@ export class CategorySelectComponent implements OnInit{
     this.selectedItem = undefined;
     this.dialog.open(AddPrivateCategoryComponent);
   }
-  //TODO: zrobić walidacje danych z eneter-manyally i przeniesc dane do receipt
-  // i pole na date
 }
