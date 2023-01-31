@@ -11,6 +11,7 @@ import {SnackBarService} from "../services/snack-bar.service";
 export class ReceiptComponent implements OnInit{
 
   public myArray = [];
+  uploadedImage: File | undefined;
 
   constructor(private router:Router,
               private route:ActivatedRoute,
@@ -51,6 +52,13 @@ export class ReceiptComponent implements OnInit{
       });
     }else{
       this.snackBarService.openRedSnackBar("Your receipt is empty!");
+    }
+  }
+
+  public onImageUpload(event:any) {
+    this.uploadedImage = event.target.files[0];
+    if (this.uploadedImage) {
+      this.receiptService.uploadImage(this.uploadedImage);
     }
   }
 }

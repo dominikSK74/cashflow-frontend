@@ -4,7 +4,7 @@
   </div>
   <div class="box">
     <div id="box-main">
-      <input type="file" id="file" #fileInput accept="image/*">
+      <input type="file" id="file" #fileInput accept="image/*" (change)="onImageUpload($event)">
       <button mat-raised-button (click)="fileInput.click()">
           upload
       </button>
