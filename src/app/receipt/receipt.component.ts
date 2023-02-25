@@ -4,7 +4,7 @@ import {ReceiptService} from "../services/receipt.service";
 import {SnackBarService} from "../services/snack-bar.service";
 import {UploadImageResponse} from "./uploadImageResponse";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {CategorySelectByImageComponent} from "../category-select-by-image/category-select-by-image.component";
+import {CategorySelectByImageComponent} from "./category-select-by-image/category-select-by-image.component";
 import {of, switchMap} from "rxjs";
 
 @Component({
@@ -68,8 +68,8 @@ export class ReceiptComponent implements OnInit{
       this.receiptService.uploadImage(this.uploadedImage)
         .subscribe((data: UploadImageResponse[]) =>{
           this.uploadImageResponse = data;
-          console.log(this.uploadImageResponse);
 
+          this.fixDate();
           this.checkCategoriesRecursively();
 
         }, (error : any) => {
@@ -84,9 +84,7 @@ export class ReceiptComponent implements OnInit{
       const currentObj = this.uploadImageResponse[index];
 
       if(!currentObj){
-
-        // TODO: USTAW KATEGORIE I DOPIERO WTEDY NAWIGACJA przez funckje
-        // this.router.navigate(['/receipt', {data: JSON.stringify(this.uploadImageResponse)}]);
+        this.router.navigate(['/receipt', {data: JSON.stringify(this.uploadImageResponse)}]);
         return;
       }
 
@@ -95,6 +93,13 @@ export class ReceiptComponent implements OnInit{
           if(!result){
             this.checkCategoriesRecursively(index);
           }else{
+            if (this.uploadImageResponse) {
+              this.uploadImageResponse[index].categories = result;
+            }
+
+            this.receiptService.setCategoryToProduct(currentObj.name, result)
+              .subscribe();
+
             this.checkCategoriesRecursively(index + 1);
           }
         });
@@ -107,6 +112,17 @@ export class ReceiptComponent implements OnInit{
   openDialog(name: string): MatDialogRef<CategorySelectByImageComponent> {
     return this.dialog.open(CategorySelectByImageComponent, {
       data: name
+    });
+  }
+
+  fixDate(){
+    this.uploadImageResponse?.forEach( element => {
+      let date = element.date;
+      let newDate = new Date(date);
+      newDate.setDate(newDate.getDate() - 1);
+      let newDateString = newDate.toISOString();
+      //@ts-ignore
+      element.date = newDateString.toString().substring(0,10);
     });
   }
 }

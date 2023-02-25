@@ -32,7 +32,7 @@ import {TokenInterceptorService} from "./services/token-interceptor.service";
 import { AddPrivateCategoryComponent } from './receipt/add-private-category/add-private-category.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
-import { CategorySelectByImageComponent } from './category-select-by-image/category-select-by-image.component';
+import { CategorySelectByImageComponent } from './receipt/category-select-by-image/category-select-by-image.component';
 
 @NgModule({
   declarations: [

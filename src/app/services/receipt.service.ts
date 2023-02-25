@@ -21,4 +21,12 @@ export class ReceiptService {
 
     return this.http.post<UploadImageResponse[]>(`${environment.link}/api/expenses/upload-image`, imageFormData);
   }
+
+  setCategoryToProduct(name: string, category: string){
+    const request = {
+      name: name,
+      category: category
+    }
+    return this.http.post(`${environment.link}/api/products/set-category`, request);
+  }
 }
