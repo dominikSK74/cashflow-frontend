@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ReceiptService} from "../services/receipt.service";
 import {SnackBarService} from "../services/snack-bar.service";
+import {UploadImageResponse} from "./uploadImageResponse";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {CategorySelectByImageComponent} from "../category-select-by-image/category-select-by-image.component";
+import {of, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-receipt',
@@ -13,10 +17,13 @@ export class ReceiptComponent implements OnInit{
   public myArray = [];
   uploadedImage: File | undefined;
 
+  uploadImageResponse: UploadImageResponse[] | undefined;
+
   constructor(private router:Router,
               private route:ActivatedRoute,
               private receiptService:ReceiptService,
-              private snackBarService: SnackBarService) { }
+              private snackBarService: SnackBarService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -58,7 +65,48 @@ export class ReceiptComponent implements OnInit{
   public onImageUpload(event:any) {
     this.uploadedImage = event.target.files[0];
     if (this.uploadedImage) {
-      this.receiptService.uploadImage(this.uploadedImage);
+      this.receiptService.uploadImage(this.uploadedImage)
+        .subscribe((data: UploadImageResponse[]) =>{
+          this.uploadImageResponse = data;
+          console.log(this.uploadImageResponse);
+
+          this.checkCategoriesRecursively();
+
+        }, (error : any) => {
+          this.snackBarService.openRedSnackBar("Make sure that your photo is clear and that the store" +
+            " from which the receipt is issued is supported by us.");
+      });
     }
+  }
+
+  public checkCategoriesRecursively(index = 0){
+    if(this.uploadImageResponse){
+      const currentObj = this.uploadImageResponse[index];
+
+      if(!currentObj){
+
+        // TODO: USTAW KATEGORIE I DOPIERO WTEDY NAWIGACJA przez funckje
+        // this.router.navigate(['/receipt', {data: JSON.stringify(this.uploadImageResponse)}]);
+        return;
+      }
+
+      if (currentObj.categories === null) {
+        this.openDialog(currentObj.name).afterClosed().subscribe((result) => {
+          if(!result){
+            this.checkCategoriesRecursively(index);
+          }else{
+            this.checkCategoriesRecursively(index + 1);
+          }
+        });
+      } else {
+        this.checkCategoriesRecursively(index + 1);
+      }
+    }
+  }
+
+  openDialog(name: string): MatDialogRef<CategorySelectByImageComponent> {
+    return this.dialog.open(CategorySelectByImageComponent, {
+      data: name
+    });
   }
 }
