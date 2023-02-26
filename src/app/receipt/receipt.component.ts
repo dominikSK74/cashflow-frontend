@@ -5,7 +5,6 @@ import {SnackBarService} from "../services/snack-bar.service";
 import {UploadImageResponse} from "./uploadImageResponse";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {CategorySelectByImageComponent} from "./category-select-by-image/category-select-by-image.component";
-import {of, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-receipt',
@@ -14,7 +13,6 @@ import {of, switchMap} from "rxjs";
 })
 export class ReceiptComponent implements OnInit{
 
-  public myArray = [];
   uploadedImage: File | undefined;
 
   uploadImageResponse: UploadImageResponse[] | undefined;
@@ -26,23 +24,17 @@ export class ReceiptComponent implements OnInit{
               private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      if(params.get('data')) {
-        let test = JSON.parse(<string>params.get('data'));
-        for(let i = 0; i<test.length; i++){
-          // @ts-ignore
-          this.myArray.push(test[i]);
-        }
-        this.myArray.forEach( element => {
-          let date = element["date"];
+    this.route.paramMap.subscribe(params =>{
+      if(params.get('data')){
+        this.uploadImageResponse = JSON.parse(<string>params.get('data'));
+
+        this.uploadImageResponse?.forEach( element =>{
+          let date = element.date;
           let newDate = new Date(date);
           newDate.setDate(newDate.getDate() + 1);
           let newDateString = newDate.toISOString();
-          //@ts-ignore
-          element["date"] = newDateString.toString().substring(0,10);
-        })
-      } else {
-        this.myArray = [];
+          element.date = newDateString.toString().substring(0,10);
+        });
       }
     });
   }
@@ -52,12 +44,16 @@ export class ReceiptComponent implements OnInit{
   }
 
   confirm(){
-    if(this.myArray.length > 0){
-      this.receiptService.addExpenses(this.myArray).subscribe(()=>{
-        this.snackBarService.openGreenSnackBar("Your receipt has been added");
-        this.router.navigate(["/home"]);
-      });
-    }else{
+    if(this.uploadImageResponse){
+      if(this.uploadImageResponse?.length > 0){
+        this.receiptService.addExpenses(this.uploadImageResponse).subscribe(()=>{
+          this.snackBarService.openGreenSnackBar("Your receipt has been added");
+          this.router.navigate(["/home"]);
+        });
+      }else{
+        this.snackBarService.openRedSnackBar("Your receipt is empty!");
+      }
+    }else {
       this.snackBarService.openRedSnackBar("Your receipt is empty!");
     }
   }
@@ -124,5 +120,9 @@ export class ReceiptComponent implements OnInit{
       //@ts-ignore
       element.date = newDateString.toString().substring(0,10);
     });
+  }
+
+  edit(index : any) {
+    console.log(index);
   }
 }
