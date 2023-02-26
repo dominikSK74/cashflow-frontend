@@ -33,6 +33,7 @@ import { AddPrivateCategoryComponent } from './receipt/add-private-category/add-
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import { CategorySelectByImageComponent } from './receipt/category-select-by-image/category-select-by-image.component';
+import { EditProductComponent } from './receipt/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { CategorySelectByImageComponent } from './receipt/category-select-by-ima
     BoxComponent,
     CategorySelectComponent,
     AddPrivateCategoryComponent,
-    CategorySelectByImageComponent
+    CategorySelectByImageComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

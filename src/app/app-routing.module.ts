@@ -11,6 +11,7 @@ import {LoginGuard} from "./guards/login.guard";
 import {SettingsComponent} from "./settings/settings.component";
 import {ReceiptComponent} from "./receipt/receipt.component";
 import {EnterManuallyComponent} from "./receipt/enter-manually/enter-manually.component";
+import {EditProductComponent} from "./receipt/edit-product/edit-product.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: "home", component: HomeComponent, canActivate: [TokenGuard, AuthGuard]},
   {path: "settings", component: SettingsComponent, canActivate: [TokenGuard, AuthGuard]},
   {path: "receipt", component: ReceiptComponent, canActivate: [TokenGuard, AuthGuard]},
-  {path: "receipt/enter-manually", component: EnterManuallyComponent, canActivate: [TokenGuard, AuthGuard]}
+  {path: "receipt/enter-manually", component: EnterManuallyComponent, canActivate: [TokenGuard, AuthGuard]},
+  {path: "receipt/edit-product/:index", component: EditProductComponent, canActivate: [TokenGuard, AuthGuard]}
 ];
 
 @NgModule({

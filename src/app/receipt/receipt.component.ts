@@ -49,6 +49,8 @@ export class ReceiptComponent implements OnInit{
         this.receiptService.addExpenses(this.uploadImageResponse).subscribe(()=>{
           this.snackBarService.openGreenSnackBar("Your receipt has been added");
           this.router.navigate(["/home"]);
+        }, error => {
+          this.snackBarService.openRedSnackBar("Something went wrong! Make sure that the selected category definitely exists.")
         });
       }else{
         this.snackBarService.openRedSnackBar("Your receipt is empty!");
@@ -123,6 +125,6 @@ export class ReceiptComponent implements OnInit{
   }
 
   edit(index : any) {
-    console.log(index);
+    this.router.navigate(['receipt/edit-product', index], { state: { data: this.uploadImageResponse } });
   }
 }
