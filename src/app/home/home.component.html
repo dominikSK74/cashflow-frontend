@@ -1,3 +1,26 @@
 <section>
-  <canvas width="800px" id="chart"></canvas>
+  <div id="firstBox">
+
+  </div>
+  <div id="chartBox">
+    <div id="wrapper">
+      <canvas id="chart"></canvas>
+    </div>
+
+    <div id="changeMonth">
+      <div id="wrapperMonth">
+        <button mat-button class="arrowBtn">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+
+        <div id="text">
+          {{month}}
+        </div>
+
+        <button mat-button class="arrowBtn">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
 </section>

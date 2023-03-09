@@ -10,9 +10,103 @@ section{
   background-color: #fef7f1;
   width: 100vw;
   height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
+#chartBox{
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+#firstBox {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+
 #chart {
-  width: 100%;
-  height: 400px;
+  width: 500px;
+}
+
+#wrapper {
+  margin-top: 70px;
+  height: 80%;
+  display: grid;
+  justify-content: center;
+}
+
+@media screen and (max-width: 900px){
+  section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+
+  #firstBox {
+    display: none;
+  }
+
+  #chartBox {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  #wrapper {
+    margin-top: 0px;
+    height: 80%;
+    display: grid;
+    justify-content: center;
+  }
+
+  #chart {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.arrowBtn {
+  transform: scale(1.8);
+}
+
+.arrowBtn mat-icon {
+  color: #41403F;
+  transform: scale(1.8);
+}
+
+#changeMonth {
+  display: grid;
+  justify-content: center;
+}
+
+#wrapperMonth {
+  display: flex;
+  gap: 30px;
+}
+
+#text {
+  color: #41403F;
+  width: 180px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
 }
