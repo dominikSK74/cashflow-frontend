@@ -25,14 +25,15 @@ section{
   grid-area: 1 / 1 / 2 / 2;
 }
 
-
-#chart {
-  width: 500px;
-}
-
 #wrapper {
   margin-top: 70px;
-  height: 80%;
+  height: 50%;
+  display: grid;
+  justify-content: center;
+}
+
+#changeMonth {
+  margin-top: 150px;
   display: grid;
   justify-content: center;
 }
@@ -61,10 +62,10 @@ section{
     justify-content: center;
   }
 
-  #chart {
-    width: 100%;
-    height: 100%;
+  #changeMonth {
+    margin-top: 0;
   }
+
 }
 
 .material-icons {
@@ -89,12 +90,7 @@ section{
 
 .arrowBtn mat-icon {
   color: #41403F;
-  transform: scale(1.8);
-}
-
-#changeMonth {
-  display: grid;
-  justify-content: center;
+  transform: scale(1.6);
 }
 
 #wrapperMonth {

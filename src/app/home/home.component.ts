@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {Chart} from "chart.js/auto";
 import {MonthEnum} from "../enums/month-enum";
+import {HomeService} from "../services/home.service";
 
 @Component({
   selector: 'app-home',
@@ -10,16 +11,26 @@ import {MonthEnum} from "../enums/month-enum";
 export class HomeComponent implements OnInit {
 
   month: string = "";
+  monthIndex: number = 0;
 
-  constructor() { }
+  year: number = 0;
+
+  titleText : string = "";
+
+  chart: Chart | undefined;
+
+  constructor(private homeService : HomeService) { }
 
   ngOnInit(): void {
-    this.setCurrentMonth();
+    this.setCurrentDate();
+    this.setTitleText();
+    this.getChartData();
+
     this.renderChart();
   }
 
   renderChart(){
-    const chart = new Chart("chart", {
+    this.chart = new Chart("chart", {
       type: 'doughnut',
       data: {
         labels: ['Przykład 1', 'Przykład 2', 'Przykład 3', 'Przykład 4', 'Przykład 5', 'Przykład 6', 'Przykład 7'],
@@ -36,7 +47,7 @@ export class HomeComponent implements OnInit {
         }]
       },
       options: {
-        responsive: false,
+        responsive: true,
         plugins: {
           legend: {
             display: true,
@@ -44,7 +55,7 @@ export class HomeComponent implements OnInit {
           },
           title: {
             display: true,
-            text: 'Example Doughnut Chart'
+            text: this.titleText
           }
         }
       }
@@ -56,8 +67,54 @@ export class HomeComponent implements OnInit {
     return date.getMonth();
   }
 
-  setCurrentMonth(){
-    const monthIndex = this.getCurrentMonth();
-    this.month = MonthEnum[monthIndex];
+  getCurrentYear(){
+    const date = new Date();
+    return date.getFullYear();
+  }
+
+  setCurrentDate(){
+    this.monthIndex = this.getCurrentMonth();
+    this.month = MonthEnum[this.monthIndex];
+    this.year = this.getCurrentYear();
+  }
+
+  getChartData(){
+    this.homeService.getExpensesByMonth(this.monthIndex);
+  }
+
+  setTitleText(){
+    this.titleText = this.year + " " + this.month.toUpperCase();
+  }
+
+  nextMonth(){
+    if(this.monthIndex === 11){
+      this.monthIndex = 0;
+      this.year++;
+    }else{
+      this.monthIndex++;
+    }
+    this.month = MonthEnum[this.monthIndex];
+    this.setTitleText();
+    this.getChartData();
+    this.destroyChart();
+    this.renderChart();
+  }
+
+  previousMonth(){
+    if(this.monthIndex === 0){
+      this.monthIndex = 11;
+      this.year--;
+    }else{
+      this.monthIndex--;
+    }
+    this.month = MonthEnum[this.monthIndex];
+    this.setTitleText();
+    this.getChartData();
+    this.destroyChart();
+    this.renderChart();
+  }
+
+  destroyChart(){
+    this.chart?.destroy();
   }
 }

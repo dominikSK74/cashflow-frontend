@@ -9,7 +9,7 @@
 
     <div id="changeMonth">
       <div id="wrapperMonth">
-        <button mat-button class="arrowBtn">
+        <button mat-button class="arrowBtn" (click)="previousMonth()">
           <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
 
@@ -17,7 +17,7 @@
           {{month}}
         </div>
 
-        <button mat-button class="arrowBtn">
+        <button mat-button class="arrowBtn" (click)="nextMonth()">
           <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
       </div>
