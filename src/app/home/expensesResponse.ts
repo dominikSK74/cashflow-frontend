@@ -1,19 +1,18 @@
 export class ExpensesResponse {
-  private _names: string[];
+  private _categories: string[];
   private _prices: number[];
 
-  constructor(names: string[], prices: number[]) {
-    this._names = names;
+  constructor(categories: string[], prices: number[]) {
+    this._categories = categories;
     this._prices = prices;
   }
 
-
-  get names(): string[] {
-    return this._names;
+  get categories(): string[] {
+    return this._categories;
   }
 
-  set names(value: string[]) {
-    this._names = value;
+  set categories(value: string[]) {
+    this._categories = value;
   }
 
   get prices(): number[] {

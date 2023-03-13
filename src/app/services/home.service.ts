@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {ExpensesResponse} from "../home/expensesResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +10,7 @@ export class HomeService {
 
   constructor(private http: HttpClient) { }
 
-  getExpensesByMonth(monthIndex : number){
-    console.log("pobiore teraz dane z tego miesiaca:");
-    console.log(monthIndex);
-
-    //TODO: WZIAC POD UWAGE JESZCZE ROK
-    //      INDEX MIEISACA ZAPISAC W OGOLNEJ ZMIENNEJ BO PO TEJ ZMIENNEJ BEDA SIE STRZALKI PRZEMIESZCZAC
+  getExpensesByMonth(monthIndex : number, year: number){
+    return this.http.get<ExpensesResponse>(`${environment.link}/api/expenses/get-data?month=${monthIndex}&year=${year}`);
   }
 }
