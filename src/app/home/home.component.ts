@@ -134,7 +134,11 @@ export class HomeComponent implements OnInit {
         this.expensesResponse = result
         if(result !== null){
           this.renderChart();
+          // @ts-ignore
+          document.getElementById("noData").style.display = "none";
         }else{
+          // @ts-ignore
+          document.getElementById("noData").style.display = "block";
           //TODO: INFO O BRAKU WYNIKOW
         }
       });
