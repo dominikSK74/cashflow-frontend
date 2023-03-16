@@ -1,1 +1,47 @@
-<p>settings work</p>
+<section id="main">
+  <div id="img">
+
+  </div>
+
+  <div id="mainBox">
+    <div id="wrapper">
+      <mat-form-field appearance="outline">
+        <mat-label>Chart type</mat-label>
+        <mat-select>
+          <mat-option value="pie">Pie Chart</mat-option>
+          <mat-option value="bar">Bar Chart</mat-option>
+          <mat-option value="doughnut">Doughnut Chart</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Chart time range</mat-label>
+        <mat-select>
+          <mat-option value="week">Weekly</mat-option>
+          <mat-option value="month">Monthly</mat-option>
+          <mat-option value="year">Yearly</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Language</mat-label>
+        <mat-select>
+          <mat-option value="en">Engilsh</mat-option>
+          <mat-option value="pl">Polish</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Theme</mat-label>
+        <mat-select>
+          <mat-option value="light">Light</mat-option>
+          <mat-option value="dark">Dark</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button id="save">save</button>
+
+      <button mat-raised-button id="logout">Logout</button>
+    </div>
+  </div>
+</section>

@@ -34,6 +34,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import { CategorySelectByImageComponent } from './receipt/category-select-by-image/category-select-by-image.component';
 import { EditProductComponent } from './receipt/edit-product/edit-product.component';
+import {MatLegacySelectModule} from "@angular/material/legacy-select";
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { EditProductComponent } from './receipt/edit-product/edit-product.compon
     MatDialogModule,
     MatListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatLegacySelectModule
   ],
   providers: [TokenGuard, AuthGuard, LoginGuard,
     {
