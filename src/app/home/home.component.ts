@@ -3,6 +3,7 @@ import {Chart} from "chart.js/auto";
 import {MonthEnum} from "../enums/month-enum";
 import {HomeService} from "../services/home.service";
 import {ExpensesResponse} from "./expensesResponse";
+import {SettingsService} from "../services/settings.service";
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit {
 
   expensesResponse : ExpensesResponse | undefined;
 
-  constructor(private homeService : HomeService) { }
+  constructor(private homeService : HomeService,
+              private settingsService : SettingsService) { }
 
   ngOnInit(): void {
     this.setCurrentDate();

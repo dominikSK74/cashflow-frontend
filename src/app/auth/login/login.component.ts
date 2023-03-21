@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
 import {SnackBarService} from "../../services/snack-bar.service";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent{
 
   constructor(private router:Router,
               private loginService:LoginService,
-              private snackBarService:SnackBarService) {
+              private snackBarService:SnackBarService,
+              private settingsService: SettingsService) {
   }
 
   loginForm = new FormGroup({
@@ -25,6 +27,7 @@ export class LoginComponent{
     this.loginService.loginUser(String(this.email?.value).toLowerCase(), String(this.password?.value))
       .subscribe(() => {
           this.router.navigate(["/home"]);
+          this.settingsService.getSettings();
         },
         () => {
           if(this.loginForm.valid){

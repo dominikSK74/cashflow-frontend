@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {SettingsService} from "./services/settings.service";
+import {GetSettingsResponse} from "./settings/GetSettingsResponse";
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,9 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit{
   title = 'CashFlow';
 
+  constructor(private settingsService : SettingsService) {
+  }
+
   windows = window.navigator.appVersion.includes("Windows");
   android = window.navigator.appVersion.includes("Android");
   iPhone = window.navigator.appVersion.includes("iPhone");
@@ -15,6 +20,6 @@ export class AppComponent implements OnInit{
   innerWidth = window.innerWidth;
 
   ngOnInit() {
-
+    this.settingsService.getSettings();
   }
 }
