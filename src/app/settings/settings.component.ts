@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SettingsService} from "../services/settings.service";
+import {GetSettingsResponse} from "./GetSettingsResponse";
 
 @Component({
   selector: 'app-settings',
@@ -7,20 +9,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  selectedChartType : string = "";
+  selectedChartTimeRange : string = "";
+  selectedLanguage : string = "";
+  selectedTheme : string = "";
+
+  getSettingsResponse : GetSettingsResponse | undefined;
+
+  constructor(private settingsService : SettingsService) { }
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.selectedChartType = this.settingsService.getChartType();
+
+    // @ts-ignore
+    this.selectedChartTimeRange = this.settingsService.getChartTimeRange();
+
+    // @ts-ignore
+    this.selectedLanguage = this.settingsService.getLanguage();
+
+    // @ts-ignore
+    this.selectedTheme = this.settingsService.getTheme();
   }
 
-//   TODO: PO STRONIE BACKENDU PRZY TWORZENIU UZTKOWNIKA STWORZYC TABELE SETTINGS Z POLAMI:
-//         STRING USER_ID
-//         STRING CHART_TYPE
-//         STRING CHART_TIME_RANGE
-//         STRING LANGUAGE
-//         STRING THEME
-//        WSZYSTKIE TE DANE TRZYMAC W ENUMACH
-//        PRZY WŁĄCZANIU APLIKACJI POBIERAC WSZYSTKIE DANE I TRZYMAC NP W LOCALSTORAGE
-//        PO KLIKNIECIU SAVE W SETTINGS AKTUALIZOWAC LOCALSTORAGE ORAZ DANE W BACKENDZIE
-//        moze podział na dzien tez
+  saveData(){
+    this.getSettingsResponse = new GetSettingsResponse(
+      this.selectedChartType.toUpperCase(),
+      this.selectedChartTimeRange.toUpperCase(),
+      this.selectedLanguage.toUpperCase(),
+      this.selectedTheme.toUpperCase()
+    );
 
+    this.settingsService.setSettings(this.getSettingsResponse);
+  }
 }
