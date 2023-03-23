@@ -6,7 +6,7 @@
     <div id="wrapper">
       <canvas id="chart"></canvas>
       <p id="noData">
-        No data in {{month}} {{year}}.<br>
+        No data in {{titleText}}.<br>
         Please enter the data in the <b>Scan Receipt</b> tab.</p>
     </div>
 
@@ -22,6 +22,10 @@
 
         <div class="text" *ngIf="chartTimeRange === 'year'">
           {{year}}
+        </div>
+
+        <div class="text" *ngIf="chartTimeRange === 'day'">
+          {{titleText}}
         </div>
 
         <button mat-button class="arrowBtn" (click)="nextMonth()">

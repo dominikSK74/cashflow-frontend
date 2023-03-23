@@ -72,6 +72,8 @@ export class HomeComponent implements OnInit {
 
   year: number = 0;
 
+  day: number = 0;
+
   titleText : string = "";
 
   chart: Chart | undefined;
@@ -99,6 +101,10 @@ export class HomeComponent implements OnInit {
       this.setYear();
       this.setTitleTextByYear();
       this.getChartDataByYear();
+    }else if(this.chartTimeRange === "day"){
+      this.setCurrentDate();
+      this.setTitleTextByDay();
+      this.getChartDataByDay();
     }else{
       this.snackBarService.openRedSnackBar("Something went wrong. Refresh the page.");
     }
@@ -106,6 +112,10 @@ export class HomeComponent implements OnInit {
 
   setTitleTextByYear(){
     this.titleText = this.year.toLocaleString();
+  }
+
+  setTitleTextByDay(){
+    this.titleText = this.day + " " + this.month + " " + this.year;
   }
 
   setYear(){
@@ -117,6 +127,11 @@ export class HomeComponent implements OnInit {
     return date.getMonth();
   }
 
+  getCurrentDay(){
+    const date = new Date();
+    return date.getDate();
+  }
+
   getCurrentYear(){
     const date = new Date();
     return date.getFullYear();
@@ -126,6 +141,7 @@ export class HomeComponent implements OnInit {
     this.monthIndex = this.getCurrentMonth();
     this.month = MonthEnum[this.monthIndex];
     this.year = this.getCurrentYear();
+    this.day = this.getCurrentDay();
   }
 
   getChartDataByMonth(){
@@ -172,6 +188,16 @@ export class HomeComponent implements OnInit {
       this.setTitleTextByYear();
       this.destroyChart();
       this.getChartDataByYear();
+    } else if(this.chartTimeRange === "day"){
+      const date = new Date(this.year, this.monthIndex, this.day);
+      date.setDate(this.day + 1);
+      this.day = date.getDate();
+      this.monthIndex = date.getMonth();
+      this.year = date.getFullYear();
+      this.month = MonthEnum[this.monthIndex];
+      this.setTitleTextByDay();
+      this.destroyChart();
+      this.getChartDataByDay();
     }
   }
 
@@ -192,6 +218,16 @@ export class HomeComponent implements OnInit {
       this.setTitleTextByYear();
       this.destroyChart();
       this.getChartDataByYear();
+    }else if(this.chartTimeRange === "day"){
+      const date = new Date(this.year, this.monthIndex, this.day);
+      date.setDate(this.day - 1);
+      this.day = date.getDate();
+      this.monthIndex = date.getMonth();
+      this.year = date.getFullYear();
+      this.month = MonthEnum[this.monthIndex];
+      this.setTitleTextByDay();
+      this.destroyChart();
+      this.getChartDataByDay();
     }
   }
 
@@ -287,6 +323,28 @@ export class HomeComponent implements OnInit {
 
   getChartDataByYear(){
     this.homeService.getExpensesByYear(this.year)
+      .subscribe( result => {
+        this.expensesResponse = result
+        if(result !== null){
+          if(this.chartType === "doughnut"){
+            this.renderDoughnutChart();
+          }else if(this.chartType === "bar"){
+            this.renderBarChart();
+          }else if(this.chartType === "pie"){
+            this.renderPieChart();
+          }else{
+            this.snackBarService.openRedSnackBar("Something went wrong. Refresh the page.");
+          }
+          // @ts-ignore
+          document.getElementById("noData").style.display = "none";
+        }else{
+          // @ts-ignore
+          document.getElementById("noData").style.display = "block";
+        }
+      });
+  }
+  getChartDataByDay(){
+    this.homeService.getExpensesByDay(this.day, this.monthIndex, this.year)
       .subscribe( result => {
         this.expensesResponse = result
         if(result !== null){
