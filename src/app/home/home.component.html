@@ -16,8 +16,12 @@
           <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
 
-        <div id="text">
+        <div class="text" *ngIf="chartTimeRange === 'month'">
           {{month}}
+        </div>
+
+        <div class="text" *ngIf="chartTimeRange === 'year'">
+          {{year}}
         </div>
 
         <button mat-button class="arrowBtn" (click)="nextMonth()">

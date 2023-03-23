@@ -13,4 +13,8 @@ export class HomeService {
   getExpensesByMonth(monthIndex : number, year: number){
     return this.http.get<ExpensesResponse>(`${environment.link}/api/expenses/get-data?month=${monthIndex}&year=${year}`);
   }
+
+  getExpensesByYear(year : number){
+    return this.http.get<ExpensesResponse>(`${environment.link}/api/expenses/get-data-year?year=${year}`);
+  }
 }

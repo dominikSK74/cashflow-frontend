@@ -102,7 +102,7 @@ section{
   gap: 30px;
 }
 
-#text {
+.text {
   color: #41403F;
   width: 180px;
   font-size: 24px;
