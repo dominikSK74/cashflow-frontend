@@ -28,6 +28,10 @@
           {{titleText}}
         </div>
 
+        <div class="text" *ngIf="chartTimeRange === 'week'">
+          {{titleText}}
+        </div>
+
         <button mat-button class="arrowBtn" (click)="nextMonth()">
           <mat-icon>keyboard_arrow_right</mat-icon>
         </button>

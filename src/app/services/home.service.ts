@@ -21,4 +21,11 @@ export class HomeService {
   getExpensesByDay(day: number, monthIndex: number, year: number){
     return this.http.get<ExpensesResponse>(`${environment.link}/api/expenses/get-data-day?day=${day}&month=${monthIndex}&year=${year}`);
   }
+
+  getExpensesByWeek(firstDay: number, firstMonth: number, firstYear: number,
+                    lastDay: number, lastMonth: number, lastYear: number){
+
+    return this.http.get<ExpensesResponse>(`${environment.link}/api/expenses/get-data-week?firstDay=${firstDay}&firstMonth=${firstMonth}&firstYear=${firstYear}
+    &lastDay=${lastDay}&lastMonth=${lastMonth}&lastYear=${lastYear}`);
+  }
 }

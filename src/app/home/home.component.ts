@@ -83,6 +83,14 @@ export class HomeComponent implements OnInit {
   chartType : string = "";
   chartTimeRange : string = "";
 
+  firstDayByWeek : number = 0;
+  firstMonthByWeek : number = 0;
+  firstYearByWeek: number = 0;
+  lastDayByWeek : number = 0;
+  lastMonthByWeek : number = 0;
+  lastYearByWeek: number = 0;
+
+
   constructor(private homeService : HomeService,
               private settingsService : SettingsService,
               private snackBarService : SnackBarService) { }
@@ -105,8 +113,43 @@ export class HomeComponent implements OnInit {
       this.setCurrentDate();
       this.setTitleTextByDay();
       this.getChartDataByDay();
+    }else if(this.chartTimeRange === "week"){
+      this.setDateByWeek();
+      this.getChartDataByWeek();
     }else{
       this.snackBarService.openRedSnackBar("Something went wrong. Refresh the page.");
+    }
+  }
+
+  setDateByWeek(){
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    const monday = new Date(today);
+    const sunday = new Date(today);
+    monday.setDate(today.getDate() - dayOfWeek + 1);
+    sunday.setDate(today.getDate() - dayOfWeek + 7);
+
+    this.firstDayByWeek = monday.getDate();
+    this.firstMonthByWeek = monday.getMonth();
+    this.firstYearByWeek = monday.getFullYear();
+
+    this.lastDayByWeek = sunday.getDate();
+    this.lastMonthByWeek = sunday.getMonth();
+    this.lastYearByWeek = sunday.getFullYear();
+
+    this.setTitleTextByWeek();
+  }
+
+  setTitleTextByWeek(){
+    if(this.firstMonthByWeek !== this.lastMonthByWeek){
+      if(this.firstYearByWeek !== this.lastYearByWeek){
+        this.titleText = this.firstDayByWeek + "/" + (this.firstMonthByWeek+1) + "/" +this.firstYearByWeek + " - "
+          + this.lastDayByWeek + "/" + (this.lastMonthByWeek+1) + "/" + this.lastYearByWeek;
+      }else{
+        this.titleText = this.firstDayByWeek + "/" + (this.firstMonthByWeek+1 )+ " - " + this.lastDayByWeek + "/" + (this.lastMonthByWeek+1) + "/" + this.lastYearByWeek;
+      }
+    }else{
+      this.titleText = this.firstDayByWeek + " - " + this.lastDayByWeek + "/" + (this.firstMonthByWeek+1) + "/" + this.firstYearByWeek;
     }
   }
 
@@ -198,6 +241,23 @@ export class HomeComponent implements OnInit {
       this.setTitleTextByDay();
       this.destroyChart();
       this.getChartDataByDay();
+    }else if(this.chartTimeRange === "week"){
+      const firstDate = new Date(this.firstYearByWeek, this.firstMonthByWeek, this.firstDayByWeek);
+      const lastDate = new Date(this.lastYearByWeek, this.lastMonthByWeek, this.lastDayByWeek);
+      firstDate.setDate(this.firstDayByWeek + 7);
+      lastDate.setDate(this.lastDayByWeek + 7);
+
+      this.firstDayByWeek = firstDate.getDate();
+      this.firstMonthByWeek = firstDate.getMonth();
+      this.firstYearByWeek = firstDate.getFullYear();
+
+      this.lastDayByWeek = lastDate.getDate();
+      this.lastMonthByWeek = lastDate.getMonth();
+      this.lastYearByWeek = lastDate.getFullYear();
+
+      this.setTitleTextByWeek();
+      this.destroyChart();
+      this.getChartDataByWeek();
     }
   }
 
@@ -228,6 +288,23 @@ export class HomeComponent implements OnInit {
       this.setTitleTextByDay();
       this.destroyChart();
       this.getChartDataByDay();
+    }else if(this.chartTimeRange === "week"){
+      const firstDate = new Date(this.firstYearByWeek, this.firstMonthByWeek, this.firstDayByWeek);
+      const lastDate = new Date(this.lastYearByWeek, this.lastMonthByWeek, this.lastDayByWeek);
+      firstDate.setDate(this.firstDayByWeek - 7);
+      lastDate.setDate(this.lastDayByWeek - 7);
+
+      this.firstDayByWeek = firstDate.getDate();
+      this.firstMonthByWeek = firstDate.getMonth();
+      this.firstYearByWeek = firstDate.getFullYear();
+
+      this.lastDayByWeek = lastDate.getDate();
+      this.lastMonthByWeek = lastDate.getMonth();
+      this.lastYearByWeek = lastDate.getFullYear();
+
+      this.setTitleTextByWeek();
+      this.destroyChart();
+      this.getChartDataByWeek();
     }
   }
 
@@ -345,6 +422,30 @@ export class HomeComponent implements OnInit {
   }
   getChartDataByDay(){
     this.homeService.getExpensesByDay(this.day, this.monthIndex, this.year)
+      .subscribe( result => {
+        this.expensesResponse = result
+        if(result !== null){
+          if(this.chartType === "doughnut"){
+            this.renderDoughnutChart();
+          }else if(this.chartType === "bar"){
+            this.renderBarChart();
+          }else if(this.chartType === "pie"){
+            this.renderPieChart();
+          }else{
+            this.snackBarService.openRedSnackBar("Something went wrong. Refresh the page.");
+          }
+          // @ts-ignore
+          document.getElementById("noData").style.display = "none";
+        }else{
+          // @ts-ignore
+          document.getElementById("noData").style.display = "block";
+        }
+      });
+  }
+
+  getChartDataByWeek(){
+    this.homeService.getExpensesByWeek(this.firstDayByWeek, this.firstMonthByWeek, this.firstYearByWeek,
+      this.lastDayByWeek, this.lastMonthByWeek, this.lastYearByWeek)
       .subscribe( result => {
         this.expensesResponse = result
         if(result !== null){
