@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SettingsService} from "../services/settings.service";
 import {GetSettingsResponse} from "./GetSettingsResponse";
 
@@ -8,7 +8,6 @@ import {GetSettingsResponse} from "./GetSettingsResponse";
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-
   selectedChartType : string = "";
   selectedChartTimeRange : string = "";
   selectedLanguage : string = "";
@@ -41,5 +40,8 @@ export class SettingsComponent implements OnInit {
     );
 
     this.settingsService.setSettings(this.getSettingsResponse);
+    setTimeout(()=>{
+      window.location.reload();
+    }, 60)
   }
 }

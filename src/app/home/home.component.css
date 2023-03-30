@@ -36,7 +36,7 @@ section{
 }
 
 #wrapper {
-  margin-top: 120px;
+  margin-top: 170px;
   height: 50%;
   display: grid;
   justify-content: center;
@@ -128,5 +128,6 @@ section{
 }
 
 .text-dark {
-  color: #eaecef;
+  /*color: #eaecef;*/
+  color: #fcd535;
 }

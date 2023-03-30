@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
     'rgb(147, 112, 219)'
   ];
 
-  chartColor: string = "#eaecef";
+  chartColor: string = "#fcd535";
   chartBorderColor: string = "#181a20";
 
   darkMode : boolean = false;
@@ -368,12 +368,26 @@ export class HomeComponent implements OnInit {
         labels: this.expensesResponse?.categories,
         datasets: [{
           label: 'Cost: ',
+          borderColor: this.chartBorderColor,
           data: this.expensesResponse?.prices,
           backgroundColor: this.colors,
         }]
       },
       options: {
         responsive: true,
+        scales: {
+          y: {
+            ticks: {
+              color: this.chartColor
+            },
+          },
+          x: {
+            ticks: {
+              color: this.chartColor
+            },
+          }
+        },
+
         plugins: {
           legend: {
             display: false,
@@ -381,7 +395,8 @@ export class HomeComponent implements OnInit {
           },
           title: {
             display: true,
-            text: this.titleText
+            text: this.titleText,
+            color: this.chartColor
           }
         }
       }
@@ -396,6 +411,7 @@ export class HomeComponent implements OnInit {
         labels: this.expensesResponse?.categories,
         datasets: [{
           label: 'Cost: ',
+          borderColor: this.chartBorderColor,
           data: this.expensesResponse?.prices,
           backgroundColor: this.colors,
           hoverOffset: 4
@@ -407,10 +423,14 @@ export class HomeComponent implements OnInit {
           legend: {
             display: true,
             position: 'bottom',
+            labels: {
+              color: this.chartColor
+            }
           },
           title: {
             display: true,
-            text: this.titleText
+            text: this.titleText,
+            color: this.chartColor
           }
         }
       }

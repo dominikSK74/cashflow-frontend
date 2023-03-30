@@ -5,7 +5,7 @@
   <div id="chartBox">
     <div id="wrapper">
       <canvas id="chart"></canvas>
-      <p id="noData">
+      <p id="noData" [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}">
         No data in {{titleText}}.<br>
         Please enter the data in the <b>Scan Receipt</b> tab.</p>
     </div>

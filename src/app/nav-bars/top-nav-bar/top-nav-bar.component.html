@@ -1,11 +1,12 @@
 <header *ngIf="!hasRoute('register')&&!hasRoute('login')">
-  <div id="main">
-    <img src="assets/images/logo2.png">
+  <div id="main" [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
+    <img *ngIf="!darkMode" src="assets/images/logo2.png">
+    <img *ngIf="darkMode" src="assets/images/logo.png">
     <nav>
       <ul>
-        <li><a routerLink="/home" routerLinkActive="active-item">Home</a></li>
-        <li><a routerLink="/receipt" routerLinkActive="active-item">Scan the receipt</a></li>
-        <li><a routerLink="/settings" routerLinkActive="active-item">Settings</a></li>
+        <li><a [ngClass]="{'light-text': !darkMode, 'dark-text': darkMode}" routerLink="/home" routerLinkActive="active-item">Home</a></li>
+        <li><a [ngClass]="{'light-text': !darkMode, 'dark-text': darkMode}" routerLink="/receipt" routerLinkActive="active-item">Scan the receipt</a></li>
+        <li><a [ngClass]="{'light-text': !darkMode, 'dark-text': darkMode}" routerLink="/settings" routerLinkActive="active-item">Settings</a></li>
       </ul>
     </nav>
   </div>
