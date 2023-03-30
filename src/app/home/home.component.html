@@ -1,6 +1,6 @@
-<section>
+<section [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
   <div id="firstBox">
-
+    <img id="home-png" src="assets/images/home.png">
   </div>
   <div id="chartBox">
     <div id="wrapper">
@@ -12,27 +12,27 @@
 
     <div id="changeMonth">
       <div id="wrapperMonth">
-        <button mat-button class="arrowBtn" (click)="previousMonth()">
+        <button mat-button class="arrowBtn" [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}" (click)="previousMonth()">
           <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
 
-        <div class="text" *ngIf="chartTimeRange === 'month'">
+        <div class="text" [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}" *ngIf="chartTimeRange === 'month'">
           {{month}}
         </div>
 
-        <div class="text" *ngIf="chartTimeRange === 'year'">
+        <div class="text" [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}" *ngIf="chartTimeRange === 'year'">
           {{year}}
         </div>
 
-        <div class="text" *ngIf="chartTimeRange === 'day'">
+        <div class="text" [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}" *ngIf="chartTimeRange === 'day'">
           {{titleText}}
         </div>
 
-        <div class="text" *ngIf="chartTimeRange === 'week'">
+        <div class="text" [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}" *ngIf="chartTimeRange === 'week'">
           {{titleText}}
         </div>
 
-        <button mat-button class="arrowBtn" (click)="nextMonth()">
+        <button mat-button class="arrowBtn" [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}" (click)="nextMonth()">
           <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
       </div>

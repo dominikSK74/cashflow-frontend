@@ -67,6 +67,11 @@ export class HomeComponent implements OnInit {
     'rgb(233, 150, 122)',
     'rgb(147, 112, 219)'
   ];
+
+  chartColor: string = "#eaecef";
+  chartBorderColor: string = "#181a20";
+
+  darkMode : boolean = false;
   month: string = "";
   monthIndex: number = 0;
 
@@ -96,6 +101,15 @@ export class HomeComponent implements OnInit {
               private snackBarService : SnackBarService) { }
 
   ngOnInit(): void {
+
+    if(this.settingsService.getTheme() === "dark"){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+      this.chartBorderColor = "#fef7f1";
+      this.chartColor = "#41403F";
+    }
+
     // @ts-ignore
     this.chartType = this.settingsService.getChartType();
     // @ts-ignore
@@ -320,6 +334,7 @@ export class HomeComponent implements OnInit {
         labels: this.expensesResponse?.categories,
         datasets: [{
           label: 'Cost: ',
+          borderColor: this.chartBorderColor,
           data: this.expensesResponse?.prices,
           backgroundColor: this.colors,
           hoverOffset: 4
@@ -331,10 +346,14 @@ export class HomeComponent implements OnInit {
           legend: {
             display: true,
             position: 'bottom',
+            labels:{
+              color: this.chartColor
+            }
           },
           title: {
             display: true,
-            text: this.titleText
+            text: this.titleText,
+            color: this.chartColor
           }
         }
       }
