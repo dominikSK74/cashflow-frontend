@@ -1,13 +1,17 @@
-<footer *ngIf="!hasRoute('register')&&!hasRoute('login')">
-  <button mat-button id="scan" [routerLink]="'/receipt'" [routerLinkActive]="'active-item'">
+<footer *ngIf="!hasRoute('register')&&!hasRoute('login')"
+        [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
+  <button mat-button id="scan" [routerLink]="'/receipt'" [routerLinkActive]="'active-item'"
+          [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}">
     <mat-icon>document_scanner</mat-icon>
   </button>
 
-  <button mat-button id="home" [routerLink]="'/home'" [routerLinkActive]="'active-item'">
+  <button mat-button id="home" [routerLink]="'/home'" [routerLinkActive]="'active-item'"
+          [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}">
     <mat-icon>home</mat-icon>
   </button>
 
-  <button mat-button id="settings" [routerLink]="'/settings'" [routerLinkActive]="'active-item'">
+  <button mat-button id="settings" [routerLink]="'/settings'" [routerLinkActive]="'active-item'"
+          [ngClass]="{'text-light': !darkMode, 'text-dark': darkMode}">
     <mat-icon>settings</mat-icon>
   </button>
 </footer>
