@@ -5,13 +5,15 @@ import {GetSettingsResponse} from "./GetSettingsResponse";
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
   selectedChartType : string = "";
   selectedChartTimeRange : string = "";
   selectedLanguage : string = "";
   selectedTheme : string = "";
+
+  darkMode:boolean = false;
 
   getSettingsResponse : GetSettingsResponse | undefined;
 
@@ -29,6 +31,12 @@ export class SettingsComponent implements OnInit {
 
     // @ts-ignore
     this.selectedTheme = this.settingsService.getTheme();
+
+    if(this.settingsService.getTheme() === 'dark'){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+    }
   }
 
   saveData(){

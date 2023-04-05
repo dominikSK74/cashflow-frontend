@@ -7,7 +7,6 @@
 }
 
 #main{
-  background-color: #fef7f1;
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -17,16 +16,31 @@
   grid-row-gap: 0px;
 }
 
+.dark-theme{
+  background-color: #181a20;
+}
+
+.light-theme{
+  background-color: #fef7f1;
+}
+
 #mainBox{
   grid-area: 1 / 2 / 2 / 3;
 }
 
 #img {
   grid-area: 1 / 1 / 2 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#settings-png {
+  width: 700px;
 }
 
 #wrapper {
-  margin-top: 70px;
+  margin-top: 170px;
   display: grid;
   justify-content: center;
 }
@@ -41,7 +55,15 @@ mat-form-field {
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.button-light {
   background-color: #2a9d8f;
+  color: white;
+}
+
+.button-dark {
+  background-color: #474d57;
   color: white;
 }
 
