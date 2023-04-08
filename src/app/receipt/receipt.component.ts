@@ -5,6 +5,7 @@ import {SnackBarService} from "../services/snack-bar.service";
 import {UploadImageResponse} from "./uploadImageResponse";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {CategorySelectByImageComponent} from "./category-select-by-image/category-select-by-image.component";
+import {SettingsService} from "../services/settings.service";
 
 @Component({
   selector: 'app-receipt',
@@ -17,13 +18,22 @@ export class ReceiptComponent implements OnInit{
 
   uploadImageResponse: UploadImageResponse[] | undefined;
 
+  darkMode : boolean = false;
+
   constructor(private router:Router,
               private route:ActivatedRoute,
               private receiptService:ReceiptService,
               private snackBarService: SnackBarService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private settingsService : SettingsService) { }
 
   ngOnInit() {
+    if(this.settingsService.getTheme() === 'dark'){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+    }
+
     this.route.paramMap.subscribe(params =>{
       if(params.get('data')){
         this.uploadImageResponse = JSON.parse(<string>params.get('data'));

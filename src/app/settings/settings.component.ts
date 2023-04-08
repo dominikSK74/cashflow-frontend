@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SettingsService} from "../services/settings.service";
 import {GetSettingsResponse} from "./GetSettingsResponse";
+import {TokenService} from "../services/token.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-settings',
@@ -17,7 +19,9 @@ export class SettingsComponent implements OnInit {
 
   getSettingsResponse : GetSettingsResponse | undefined;
 
-  constructor(private settingsService : SettingsService) { }
+  constructor(private settingsService : SettingsService,
+              private tokenService : TokenService,
+              private router : Router) { }
 
   ngOnInit(): void {
     // @ts-ignore
@@ -51,5 +55,10 @@ export class SettingsComponent implements OnInit {
     setTimeout(()=>{
       window.location.reload();
     }, 60)
+  }
+
+  logout(){
+    this.tokenService.removeToken();
+    this.router.navigate(["/login"]);
   }
 }

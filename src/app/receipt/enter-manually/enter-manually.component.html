@@ -1,10 +1,12 @@
-<section id="main">
+<section id="main" [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
   <div id="box">
       <app-box (delete)="deleteBox($event)" *ngFor="let box of boxes"></app-box><br>
       <div id="wrapper-box"></div>
       <div id="wrapper">
-        <button mat-raised-button id="add" class="margin" (click)="addBox()">add</button>
-        <button mat-raised-button id="confirm" class="margin" (click)="getValues()">confirm</button>
+        <button mat-raised-button id="add" class="margin" (click)="addBox()"
+                [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">add</button>
+        <button mat-raised-button id="confirm" class="margin" (click)="getValues()"
+                [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">confirm</button>
       </div>
   </div>
 </section>

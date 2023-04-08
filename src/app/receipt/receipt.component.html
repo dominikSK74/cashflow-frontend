@@ -1,29 +1,33 @@
-<section class="main">
+<section class="main" [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
   <div class="img">
-
+    <img id="receipt-png" src="assets/images/receipt.png">
   </div>
   <div class="box">
     <div id="box-main">
       <input type="file" id="file" #fileInput accept="image/*" (change)="onImageUpload($event)">
-      <button class="btn" mat-raised-button (click)="fileInput.click()">
+      <button class="btn" mat-raised-button (click)="fileInput.click()"
+              [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">
           upload
       </button>
-      <button class="btn" mat-raised-button (click)="enterManually()">enter manually</button>
+      <button class="btn" mat-raised-button (click)="enterManually()"
+              [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">enter manually</button>
 
       <div id="text">
-        <p *ngFor="let item of uploadImageResponse; let i = index;">
+        <p [ngClass]="{'text-dark': darkMode}"
+           *ngFor="let item of uploadImageResponse; let i = index;">
               Name: {{item["name"]}}
           <button id="edit" mat-icon-button (click)="edit(i)">
-            <mat-icon>edit</mat-icon>
+            <mat-icon [ngClass]="{'text-dark': darkMode}">edit</mat-icon>
           </button><br>
               Cost: {{item["cost"]}}<br>
               Category: {{item["categories"]}}<br>
               Date: {{item["date"]}}<br>
 
-          <mat-divider></mat-divider>
+          <mat-divider [ngClass]="{'mat-divider-dark': darkMode}"></mat-divider>
         </p>
       </div>
-      <button class="btn" mat-raised-button (click)="confirm()">confirm</button>
+      <button class="btn" mat-raised-button (click)="confirm()"
+              [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">confirm</button>
     </div>
   </div>
 </section>

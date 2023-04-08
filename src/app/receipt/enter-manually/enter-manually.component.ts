@@ -3,6 +3,7 @@ import {BoxService} from "../../services/box.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SnackBarService} from "../../services/snack-bar.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-enter-manually',
@@ -14,6 +15,8 @@ export class EnterManuallyComponent implements OnInit, OnDestroy{
   // @ts-ignore
   boxes: any[];
 
+  darkMode : boolean = false;
+
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
     cost: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]{1,2})?$")]),
@@ -24,9 +27,16 @@ export class EnterManuallyComponent implements OnInit, OnDestroy{
   constructor(private boxService:BoxService,
               private snackBarService:SnackBarService,
               private route:ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private settingsService : SettingsService) {
   }
   ngOnInit() {
+    if(this.settingsService.getTheme() === 'dark'){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+    }
+
    this.boxes = [];
   }
 

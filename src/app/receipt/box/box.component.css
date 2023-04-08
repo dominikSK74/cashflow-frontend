@@ -30,6 +30,10 @@ mat-icon {
   color: rgba(66, 68, 90, 1);
 }
 
+.mat-icon-dark {
+  color: #fcd535;
+}
+
 mat-hint {
   color: red;
 }

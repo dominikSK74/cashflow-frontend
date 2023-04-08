@@ -6,7 +6,6 @@
 }
 
 #main {
-  background-color: #fef7f1;
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -14,12 +13,19 @@
   align-items: center;
 }
 
+.dark-theme{
+  background-color: #181a20;
+}
+
+.light-theme{
+  background-color: #fef7f1;
+}
+
 mat-icon {
   color: white;
 }
 
 button {
-  background-color: #2a9d8f !important;
   margin: 0 auto;
 }
 
@@ -44,7 +50,15 @@ button {
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.button-light {
   background-color: #2a9d8f;
+  color: white;
+}
+
+.button-dark {
+  background-color: #474d57;
   color: white;
 }
 

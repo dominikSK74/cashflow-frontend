@@ -3,6 +3,7 @@ import {BoxService} from "../../services/box.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {CategorySelectComponent} from "../category-select/category-select.component";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-box',
@@ -13,6 +14,8 @@ export class BoxComponent implements OnInit, OnDestroy {
   box: any = {};
   @Output() delete = new EventEmitter<number>();
 
+  darkMode : boolean = false;
+
   boxForm = new FormGroup({
     name: new FormControl(this.box.name, [Validators.required]),
     cost: new FormControl(this.box.cost, [Validators.required, Validators.pattern("^[0-9]+(\\.[0-9]{1,2})?$")]),
@@ -22,9 +25,15 @@ export class BoxComponent implements OnInit, OnDestroy {
 
 
   constructor(private boxService:BoxService,
-              private dialog:MatDialog) {}
+              private dialog:MatDialog,
+              private settingsService : SettingsService) {}
 
   ngOnInit() {
+    if(this.settingsService.getTheme() === 'dark'){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+    }
     this.boxService.addBox(this.box);
   }
 
