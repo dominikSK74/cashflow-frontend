@@ -1,6 +1,7 @@
+<section [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
 <mat-dialog-content>
-  <h2>Select category</h2>
-  <mat-list>
+  <h2 [ngClass]="{'dark-text' : darkMode}">Select category</h2>
+  <mat-list [ngClass]="{'dark-text' : darkMode}">
     <mat-list-item (click)="addNewCategory()"><h3>Add your own category</h3></mat-list-item>
     <mat-divider></mat-divider>
     <ng-container *ngFor="let item of items; let i = index">
@@ -11,5 +12,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="center">
   <button id="cancel" mat-button mat-dialog-close>Cancel</button>
-  <button id="ok" mat-button [mat-dialog-close]="selectedItem" cdkFocusInitial>Ok</button>
+  <button id="ok" mat-button [mat-dialog-close]="selectedItem" cdkFocusInitial
+          [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">Ok</button>
 </mat-dialog-actions>
+</section>

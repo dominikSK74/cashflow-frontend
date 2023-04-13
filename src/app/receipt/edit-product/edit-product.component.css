@@ -11,6 +11,13 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.dark-theme{
+  background-color: #181a20;
+}
+
+.light-theme{
   background-color: #fef7f1;
 }
 
@@ -44,8 +51,20 @@ mat-icon {
   font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.button-light {
   background-color: #2a9d8f;
   color: white;
+}
+
+.button-dark {
+  background-color: #474d57;
+  color: white;
+}
+
+.mat-icon-dark {
+  color: #fcd535;
 }
 
 mat-hint {

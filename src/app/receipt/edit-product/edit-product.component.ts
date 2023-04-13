@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CategorySelectComponent} from "../category-select/category-select.component";
 import {MatDialog} from "@angular/material/dialog";
 import {SnackBarService} from "../../services/snack-bar.service";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-edit-product',
@@ -16,14 +17,23 @@ export class EditProductComponent implements OnInit{
   product: UploadImageResponse = new UploadImageResponse("", 0, "", "");
   productForm: FormGroup = new FormGroup({});
   index: any;
+  darkMode : boolean = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private dialog: MatDialog,
-              private snackBarService: SnackBarService) {
+              private snackBarService: SnackBarService,
+              private settingsService : SettingsService) {
   }
 
   ngOnInit(): void {
+
+    if(this.settingsService.getTheme() === 'dark'){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+    }
+
     this.route.paramMap.subscribe(params => {
       const index = params.get('index');
       // @ts-ignore

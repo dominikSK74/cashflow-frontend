@@ -26,7 +26,24 @@ button {
   background-color: darkred;
 }
 
-#ok {
-  color: white;
+.dark-theme{
+  background-color: #181a20;
+}
+
+.light-theme{
+  background-color: #fef7f1;
+}
+
+.button-light {
   background-color: #2a9d8f;
+  color: white;
+}
+
+.button-dark {
+  background-color: #474d57;
+  color: white;
+}
+
+.dark-text {
+  color: #fcd535;
 }

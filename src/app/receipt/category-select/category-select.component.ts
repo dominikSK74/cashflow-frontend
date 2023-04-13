@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryService} from "../../services/category.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddPrivateCategoryComponent} from "../add-private-category/add-private-category.component";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-category-select',
@@ -11,12 +12,21 @@ import {AddPrivateCategoryComponent} from "../add-private-category/add-private-c
 export class CategorySelectComponent implements OnInit{
   items = [];
   selectedItem: any;
+  darkMode : boolean = false;
 
   constructor(private categoryService:CategoryService,
-              private dialog:MatDialog) {
+              private dialog:MatDialog,
+              private settingsService : SettingsService) {
   }
 
   ngOnInit(): void {
+
+    if(this.settingsService.getTheme() === 'dark'){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+    }
+
     this.categoryService.getCategories().subscribe((data)=> {
       let category = JSON.parse(data);
       for (let i = 0; i < category.length; i++){

@@ -1,11 +1,14 @@
+<section [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
 <mat-dialog-content>
-  <h3>Enter the category name</h3>
-  <mat-form-field appearance="outline" floatLabel="auto" class="margin">
+  <h3 [ngClass]="{'dark-text': darkMode}">Enter the category name</h3>
+  <mat-form-field appearance="outline" floatLabel="auto" class="margin" [ngClass]="{'dark-form': darkMode}">
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="name">
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
   <button id="cancel" mat-button mat-dialog-close>Cancel</button>
-  <button id="ok" mat-button mat-dialog-close cdkFocusInitial (click)="addCategory()">Ok</button>
+  <button id="ok" mat-button mat-dialog-close cdkFocusInitial (click)="addCategory()"
+          [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">Ok</button>
 </mat-dialog-actions>
+</section>
