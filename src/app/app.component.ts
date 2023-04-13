@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SettingsService} from "./services/settings.service";
 import {GetSettingsResponse} from "./settings/GetSettingsResponse";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import {GetSettingsResponse} from "./settings/GetSettingsResponse";
 export class AppComponent implements OnInit{
   title = 'CashFlow';
 
-  constructor(private settingsService : SettingsService) {
+  constructor(private settingsService : SettingsService,
+              private translate : TranslateService) {
   }
 
   windows = window.navigator.appVersion.includes("Windows");
@@ -21,5 +23,14 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     this.settingsService.getSettings();
+    let language = this.settingsService.getLanguage();
+
+    if(language === 'pl'){
+      this.translate.setDefaultLang('pl');
+      this.translate.use('pl');
+    }else{
+      this.translate.setDefaultLang('en');
+      this.translate.use('en');
+    }
   }
 }

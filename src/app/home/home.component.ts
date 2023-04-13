@@ -5,6 +5,7 @@ import {HomeService} from "../services/home.service";
 import {ExpensesResponse} from "./expensesResponse";
 import {SettingsService} from "../services/settings.service";
 import {SnackBarService} from "../services/snack-bar.service";
+import {MonthEnumPl} from "../enums/month-enum-pl";
 
 @Component({
   selector: 'app-home',
@@ -95,6 +96,8 @@ export class HomeComponent implements OnInit {
   lastMonthByWeek : number = 0;
   lastYearByWeek: number = 0;
 
+  cost : string = "cost: ";
+
 
   constructor(private homeService : HomeService,
               private settingsService : SettingsService,
@@ -108,6 +111,12 @@ export class HomeComponent implements OnInit {
       this.darkMode = false;
       this.chartBorderColor = "#fef7f1";
       this.chartColor = "#41403F";
+    }
+
+    if(this.settingsService.getLanguage() === 'pl'){
+      this.cost = "koszt: ";
+    }else{
+      this.cost = "cost: ";
     }
 
     // @ts-ignore
@@ -196,7 +205,11 @@ export class HomeComponent implements OnInit {
 
   setCurrentDate(){
     this.monthIndex = this.getCurrentMonth();
-    this.month = MonthEnum[this.monthIndex];
+    if(this.settingsService.getLanguage() === 'pl'){
+      this.month = MonthEnumPl[this.monthIndex];
+    }else{
+      this.month = MonthEnum[this.monthIndex];
+    }
     this.year = this.getCurrentYear();
     this.day = this.getCurrentDay();
   }
@@ -236,7 +249,11 @@ export class HomeComponent implements OnInit {
       }else{
         this.monthIndex++;
       }
-      this.month = MonthEnum[this.monthIndex];
+      if(this.settingsService.getLanguage() === 'pl'){
+        this.month = MonthEnumPl[this.monthIndex];
+      }else{
+        this.month = MonthEnum[this.monthIndex];
+      }
       this.setTitleTextByMonth();
       this.destroyChart();
       this.getChartDataByMonth();
@@ -251,7 +268,11 @@ export class HomeComponent implements OnInit {
       this.day = date.getDate();
       this.monthIndex = date.getMonth();
       this.year = date.getFullYear();
-      this.month = MonthEnum[this.monthIndex];
+      if(this.settingsService.getLanguage() === 'pl'){
+        this.month = MonthEnumPl[this.monthIndex];
+      }else{
+        this.month = MonthEnum[this.monthIndex];
+      }
       this.setTitleTextByDay();
       this.destroyChart();
       this.getChartDataByDay();
@@ -283,7 +304,11 @@ export class HomeComponent implements OnInit {
       }else{
         this.monthIndex--;
       }
-      this.month = MonthEnum[this.monthIndex];
+      if(this.settingsService.getLanguage() === 'pl'){
+        this.month = MonthEnumPl[this.monthIndex];
+      }else{
+        this.month = MonthEnum[this.monthIndex];
+      }
       this.setTitleTextByMonth();
       this.destroyChart();
       this.getChartDataByMonth();
@@ -298,7 +323,11 @@ export class HomeComponent implements OnInit {
       this.day = date.getDate();
       this.monthIndex = date.getMonth();
       this.year = date.getFullYear();
-      this.month = MonthEnum[this.monthIndex];
+      if(this.settingsService.getLanguage() === 'pl'){
+        this.month = MonthEnumPl[this.monthIndex];
+      }else{
+        this.month = MonthEnum[this.monthIndex];
+      }
       this.setTitleTextByDay();
       this.destroyChart();
       this.getChartDataByDay();
@@ -333,7 +362,7 @@ export class HomeComponent implements OnInit {
       data: {
         labels: this.expensesResponse?.categories,
         datasets: [{
-          label: 'Cost: ',
+          label: this.cost,
           borderColor: this.chartBorderColor,
           data: this.expensesResponse?.prices,
           backgroundColor: this.colors,
@@ -367,7 +396,7 @@ export class HomeComponent implements OnInit {
       data: {
         labels: this.expensesResponse?.categories,
         datasets: [{
-          label: 'Cost: ',
+          label: this.cost,
           borderColor: this.chartBorderColor,
           data: this.expensesResponse?.prices,
           backgroundColor: this.colors,
@@ -410,7 +439,7 @@ export class HomeComponent implements OnInit {
       data: {
         labels: this.expensesResponse?.categories,
         datasets: [{
-          label: 'Cost: ',
+          label: this.cost,
           borderColor: this.chartBorderColor,
           data: this.expensesResponse?.prices,
           backgroundColor: this.colors,

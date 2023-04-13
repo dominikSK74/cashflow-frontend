@@ -13,7 +13,7 @@ import {MatLegacyButtonModule as MatButtonModule} from "@angular/material/legacy
 import { RegisterComponent } from './auth/register/register.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import {MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/legacy-snack-bar';
-import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
 import { HomeComponent } from './home/home.component';
 import {TokenGuard} from "./guards/token.guard";
 import {AuthGuard} from "./guards/auth.guard";
@@ -35,6 +35,8 @@ import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import { CategorySelectByImageComponent } from './receipt/category-select-by-image/category-select-by-image.component';
 import { EditProductComponent } from './receipt/edit-product/edit-product.component';
 import {MatLegacySelectModule} from "@angular/material/legacy-select";
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,16 @@ import {MatLegacySelectModule} from "@angular/material/legacy-select";
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatLegacySelectModule
+    MatLegacySelectModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [TokenGuard, AuthGuard, LoginGuard,
     {

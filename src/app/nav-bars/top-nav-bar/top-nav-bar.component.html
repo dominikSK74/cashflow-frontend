@@ -4,9 +4,18 @@
     <img *ngIf="darkMode" src="assets/images/logo.png">
     <nav>
       <ul>
-        <li><a [ngClass]="{'light-text': !darkMode, 'dark-text': darkMode}" routerLink="/home" routerLinkActive="active-item">Home</a></li>
-        <li><a [ngClass]="{'light-text': !darkMode, 'dark-text': darkMode}" routerLink="/receipt" routerLinkActive="active-item">Scan the receipt</a></li>
-        <li><a [ngClass]="{'light-text': !darkMode, 'dark-text': darkMode}" routerLink="/settings" routerLinkActive="active-item">Settings</a></li>
+        <li>
+          <a [ngClass]="{'light-text': !darkMode, 'dark-text': darkMode}"
+               routerLink="/home" routerLinkActive="active-item">{{ 'NAV_BAR_HOME' | translate }}</a>
+        </li>
+        <li>
+          <a [ngClass]="{'light-text': !darkMode, 'dark-text': darkMode}"
+             routerLink="/receipt" routerLinkActive="active-item">{{ 'NAV_BAR_RECEIPT' | translate }}</a>
+        </li>
+        <li>
+          <a [ngClass]="{'light-text': !darkMode, 'dark-text': darkMode}"
+             routerLink="/settings" routerLinkActive="active-item">{{ 'NAV_BAR_SETTINGS' | translate }}</a>
+        </li>
       </ul>
     </nav>
   </div>
