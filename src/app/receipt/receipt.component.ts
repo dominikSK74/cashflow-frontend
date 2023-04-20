@@ -6,6 +6,7 @@ import {UploadImageResponse} from "./uploadImageResponse";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {CategorySelectByImageComponent} from "./category-select-by-image/category-select-by-image.component";
 import {SettingsService} from "../services/settings.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-receipt',
@@ -25,7 +26,8 @@ export class ReceiptComponent implements OnInit{
               private receiptService:ReceiptService,
               private snackBarService: SnackBarService,
               private dialog: MatDialog,
-              private settingsService : SettingsService) { }
+              private settingsService : SettingsService,
+              private translate : TranslateService) { }
 
   ngOnInit() {
     if(this.settingsService.getTheme() === 'dark'){
@@ -57,16 +59,16 @@ export class ReceiptComponent implements OnInit{
     if(this.uploadImageResponse){
       if(this.uploadImageResponse?.length > 0){
         this.receiptService.addExpenses(this.uploadImageResponse).subscribe(()=>{
-          this.snackBarService.openGreenSnackBar("Your receipt has been added");
+          this.snackBarService.openGreenSnackBar(this.translate.instant('SNACKBAR_RECEIPT_ADDED'));
           this.router.navigate(["/home"]);
         }, error => {
-          this.snackBarService.openRedSnackBar("Something went wrong! Make sure that the selected category definitely exists.")
+          this.snackBarService.openRedSnackBar(this.translate.instant('SNACKBAR_RECEIPT_ERR'))
         });
       }else{
-        this.snackBarService.openRedSnackBar("Your receipt is empty!");
+        this.snackBarService.openRedSnackBar(this.translate.instant('SNACKBAR_RECEIPT_EMPTY'));
       }
     }else {
-      this.snackBarService.openRedSnackBar("Your receipt is empty!");
+      this.snackBarService.openRedSnackBar(this.translate.instant('SNACKBAR_RECEIPT_EMPTY'));
     }
   }
 

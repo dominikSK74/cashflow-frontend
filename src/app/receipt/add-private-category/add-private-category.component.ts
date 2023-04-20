@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryService} from "../../services/category.service";
 import {SnackBarService} from "../../services/snack-bar.service";
 import {SettingsService} from "../../services/settings.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-add-private-category',
@@ -14,7 +15,8 @@ export class AddPrivateCategoryComponent implements OnInit{
 
   constructor(private categoryService:CategoryService,
               private snackBarService:SnackBarService,
-              private settingsService:SettingsService) {
+              private settingsService:SettingsService,
+              private translate: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -28,10 +30,10 @@ export class AddPrivateCategoryComponent implements OnInit{
   addCategory(){
     if(this.categoryService.checkCategory(this.name)){
       this.categoryService.addPrivateCategory(this.name).subscribe(()=>{
-        this.snackBarService.openGreenSnackBar("Your category has been added");
+        this.snackBarService.openGreenSnackBar(this.translate.instant('SNACKBAR_CATEGORY_ADDED'));
       });
     }else{
-      this.snackBarService.openRedSnackBar("ERROR: You have entered an empty field or this category already exists.");
+      this.snackBarService.openRedSnackBar(this.translate.instant('SNACKBAR_CATEGORY_ERR'));
     }
   }
 }

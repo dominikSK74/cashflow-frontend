@@ -6,6 +6,7 @@ import {CategorySelectComponent} from "../category-select/category-select.compon
 import {MatDialog} from "@angular/material/dialog";
 import {SnackBarService} from "../../services/snack-bar.service";
 import {SettingsService} from "../../services/settings.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-edit-product',
@@ -23,7 +24,8 @@ export class EditProductComponent implements OnInit{
               private route: ActivatedRoute,
               private dialog: MatDialog,
               private snackBarService: SnackBarService,
-              private settingsService : SettingsService) {
+              private settingsService : SettingsService,
+              private translate: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -82,7 +84,7 @@ export class EditProductComponent implements OnInit{
       this.fixDate();
       this.router.navigate(['/receipt', {data: JSON.stringify(this.uploadImageResponse)}]);
     }else{
-      this.snackBarService.openRedSnackBar("The given data is not correct");
+      this.snackBarService.openRedSnackBar(this.translate.instant('SNACKBAR_RECEIPT_NOT_CORRECT'));
     }
   }
 

@@ -1,11 +1,11 @@
 <section [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
 <mat-dialog-content>
-  <p [ngClass]="{'dark-text' : darkMode}">Category not recognized<br>
-    for this product:<br>
+  <p [ngClass]="{'dark-text' : darkMode}">{{ 'SELECT_CATEGORY_NOT_RECOGNIZED_1' | translate}}<br>
+    {{ 'SELECT_CATEGORY_NOT_RECOGNIZED_2' | translate}}<br>
     <span>{{data}}</span><br>
-    Please select a category</p>
+    {{ 'SELECT_CATEGORY_SELECT' | translate}}</p>
   <mat-list [ngClass]="{'dark-text' : darkMode}">
-    <mat-list-item (click)="addNewCategory()"><h3>Add your own category</h3></mat-list-item>
+    <mat-list-item (click)="addNewCategory()"><h3>{{ 'CATEGORY_ADD_OWN' | translate}}</h3></mat-list-item>
     <mat-divider></mat-divider>
     <ng-container *ngFor="let item of items; let i = index">
       <mat-divider *ngIf="i != 0"></mat-divider>
@@ -15,6 +15,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="center">
   <button id="ok" mat-button [mat-dialog-close]="selectedItem" cdkFocusInitial
-          [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">Ok</button>
+          [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">{{ 'OK' | translate}}</button>
 </mat-dialog-actions>
 </section>

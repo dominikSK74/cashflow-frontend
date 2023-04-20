@@ -4,9 +4,9 @@
       <div id="wrapper-box"></div>
       <div id="wrapper">
         <button mat-raised-button id="add" class="margin" (click)="addBox()"
-                [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">add</button>
+                [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">{{ 'ADD' | translate }}</button>
         <button mat-raised-button id="confirm" class="margin" (click)="getValues()"
-                [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">confirm</button>
+                [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">{{ 'CONFIRM' | translate }}</button>
       </div>
   </div>
 </section>

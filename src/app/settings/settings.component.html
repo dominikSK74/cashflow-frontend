@@ -6,44 +6,44 @@
   <div id="mainBox">
     <div id="wrapper">
       <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
-        <mat-label>Chart type</mat-label>
+        <mat-label>{{ 'SETTINGS_CHART_TYPE' | translate }}</mat-label>
         <mat-select [(ngModel)]="selectedChartType">
-          <mat-option value="pie">Pie Chart</mat-option>
-          <mat-option value="bar">Bar Chart</mat-option>
-          <mat-option value="doughnut">Doughnut Chart</mat-option>
+          <mat-option value="pie">{{pie}}</mat-option>
+          <mat-option value="bar">{{bar}}</mat-option>
+          <mat-option value="doughnut">{{doughnut}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
-        <mat-label>Chart time range</mat-label>
+        <mat-label>{{ 'SETTINGS_TIME_RANGE' | translate }}</mat-label>
         <mat-select [(ngModel)]="selectedChartTimeRange">
-          <mat-option value="day">Dayly</mat-option>
-          <mat-option value="week">Weekly</mat-option>
-          <mat-option value="month">Monthly</mat-option>
-          <mat-option value="year">Yearly</mat-option>
+          <mat-option value="day">{{daily}}</mat-option>
+          <mat-option value="week">{{weekly}}</mat-option>
+          <mat-option value="month">{{monthly}}</mat-option>
+          <mat-option value="year">{{yearly}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
-        <mat-label>Language</mat-label>
+        <mat-label>{{ 'SETTINGS_LANG' | translate }}</mat-label>
         <mat-select [(ngModel)]="selectedLanguage">
-          <mat-option value="en">Engilsh</mat-option>
-          <mat-option value="pl">Polish</mat-option>
+          <mat-option value="en">{{en}}</mat-option>
+          <mat-option value="pl">{{pl}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
-        <mat-label>Theme</mat-label>
+        <mat-label>{{ 'SETTINGS_THEME' | translate }}</mat-label>
         <mat-select [(ngModel)]="selectedTheme">
-          <mat-option value="light">Light</mat-option>
-          <mat-option value="dark">Dark</mat-option>
+          <mat-option value="light">{{light}}</mat-option>
+          <mat-option value="dark">{{dark}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <button mat-raised-button id="save" (click)="saveData()"
-              [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">save</button>
+              [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">{{ 'SAVE' | translate }}</button>
 
-      <button mat-raised-button id="logout" (click)="logout()">Logout</button>
+      <button mat-raised-button id="logout" (click)="logout()">{{ 'LOGOUT' | translate }}</button>
     </div>
   </div>
 </section>

@@ -1,8 +1,8 @@
 <section [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
 <mat-dialog-content>
-  <h2 [ngClass]="{'dark-text' : darkMode}">Select category</h2>
+  <h2 [ngClass]="{'dark-text' : darkMode}">{{ 'CATEGORY_SELECT' | translate }}</h2>
   <mat-list [ngClass]="{'dark-text' : darkMode}">
-    <mat-list-item (click)="addNewCategory()"><h3>Add your own category</h3></mat-list-item>
+    <mat-list-item (click)="addNewCategory()"><h3>{{ 'CATEGORY_ADD_OWN' | translate }}</h3></mat-list-item>
     <mat-divider></mat-divider>
     <ng-container *ngFor="let item of items; let i = index">
       <mat-divider *ngIf="i != 0"></mat-divider>
@@ -11,8 +11,8 @@
   </mat-list>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
-  <button id="cancel" mat-button mat-dialog-close>Cancel</button>
+  <button id="cancel" mat-button mat-dialog-close>{{ 'CANCEL' | translate }}</button>
   <button id="ok" mat-button [mat-dialog-close]="selectedItem" cdkFocusInitial
-          [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">Ok</button>
+          [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">{{ 'OK' | translate }}</button>
 </mat-dialog-actions>
 </section>

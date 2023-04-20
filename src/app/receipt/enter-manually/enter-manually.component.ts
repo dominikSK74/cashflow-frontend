@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SnackBarService} from "../../services/snack-bar.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SettingsService} from "../../services/settings.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-enter-manually',
@@ -28,7 +29,8 @@ export class EnterManuallyComponent implements OnInit, OnDestroy{
               private snackBarService:SnackBarService,
               private route:ActivatedRoute,
               private router: Router,
-              private settingsService : SettingsService) {
+              private settingsService : SettingsService,
+              private translate : TranslateService) {
   }
   ngOnInit() {
     if(this.settingsService.getTheme() === 'dark'){
@@ -64,10 +66,10 @@ export class EnterManuallyComponent implements OnInit, OnDestroy{
     });
 
     if(valid && (this.boxes.length > 0)){
-      this.snackBarService.openGreenSnackBar("Receipt added");
+      this.snackBarService.openGreenSnackBar(this.translate.instant('SNACKBAR_RECEIPT_ADDED'));
       this.router.navigate(['/receipt', {data: JSON.stringify(myBoxes)}]);
     }else{
-      this.snackBarService.openRedSnackBar("The given data is not correct");
+      this.snackBarService.openRedSnackBar(this.translate.instant('SNACKBAR_RECEIPT_NOT_CORRECT'));
     }
   }
 
