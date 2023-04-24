@@ -98,6 +98,8 @@ export class HomeComponent implements OnInit {
 
   cost : string = "cost: ";
 
+  sum : number = 0;
+
 
   constructor(private homeService : HomeService,
               private settingsService : SettingsService,
@@ -219,6 +221,12 @@ export class HomeComponent implements OnInit {
       .subscribe( result => {
         this.expensesResponse = result
         if(result !== null){
+          this.sum = 0;
+          this.expensesResponse.prices.forEach(element =>{
+            this.sum = this.sum + element;
+          });
+          this.sum = parseFloat(this.sum.toFixed(2));
+
           if(this.chartType === "doughnut"){
             this.renderDoughnutChart();
           }else if(this.chartType === "bar"){
@@ -381,7 +389,7 @@ export class HomeComponent implements OnInit {
           },
           title: {
             display: true,
-            text: this.titleText,
+            text: this.titleText + " " + this.sum,
             color: this.chartColor
           }
         }
@@ -424,7 +432,7 @@ export class HomeComponent implements OnInit {
           },
           title: {
             display: true,
-            text: this.titleText,
+            text: this.titleText  + " " + this.sum,
             color: this.chartColor
           }
         }
@@ -458,7 +466,7 @@ export class HomeComponent implements OnInit {
           },
           title: {
             display: true,
-            text: this.titleText,
+            text: this.titleText  + " " + this.sum,
             color: this.chartColor
           }
         }
@@ -471,6 +479,12 @@ export class HomeComponent implements OnInit {
       .subscribe( result => {
         this.expensesResponse = result
         if(result !== null){
+          this.sum = 0;
+          this.expensesResponse.prices.forEach(element =>{
+            this.sum = this.sum + element;
+          });
+
+          this.sum = parseFloat(this.sum.toFixed(2));
           if(this.chartType === "doughnut"){
             this.renderDoughnutChart();
           }else if(this.chartType === "bar"){
@@ -493,6 +507,12 @@ export class HomeComponent implements OnInit {
       .subscribe( result => {
         this.expensesResponse = result
         if(result !== null){
+          this.sum = 0;
+          this.expensesResponse.prices.forEach(element =>{
+            this.sum = this.sum + element;
+          });
+          this.sum = parseFloat(this.sum.toFixed(2));
+
           if(this.chartType === "doughnut"){
             this.renderDoughnutChart();
           }else if(this.chartType === "bar"){
@@ -516,7 +536,14 @@ export class HomeComponent implements OnInit {
       this.lastDayByWeek, this.lastMonthByWeek, this.lastYearByWeek)
       .subscribe( result => {
         this.expensesResponse = result
+
         if(result !== null){
+          this.sum = 0;
+          this.expensesResponse.prices.forEach(element =>{
+            this.sum = this.sum + element;
+          });
+          this.sum = parseFloat(this.sum.toFixed(2));
+
           if(this.chartType === "doughnut"){
             this.renderDoughnutChart();
           }else if(this.chartType === "bar"){
