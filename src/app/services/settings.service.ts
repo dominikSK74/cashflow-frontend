@@ -39,6 +39,22 @@ export class SettingsService {
     return localStorage.getItem('theme');
   }
 
+  setChartType(chartType : string){
+    localStorage.setItem('chartType', chartType);
+  }
+
+  setChartTimeRange(chartTimeRange : string){
+    localStorage.setItem('chartTimeRange', chartTimeRange);
+  }
+
+  setTheme(theme : string){
+    localStorage.setItem('theme', theme);
+  }
+
+  setLanguage(lang : string){
+    localStorage.setItem('language', lang);
+  }
+
   setSettings(dto : GetSettingsResponse){
     const request = {
       chartType: dto.chartType,

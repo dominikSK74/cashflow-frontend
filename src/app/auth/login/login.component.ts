@@ -28,6 +28,9 @@ export class LoginComponent{
       .subscribe(() => {
           this.router.navigate(["/home"]);
           this.settingsService.getSettings();
+          setTimeout(()=>{
+            window.location.reload();
+          }, 60)
         },
         () => {
           if(this.loginForm.valid){
@@ -52,5 +55,9 @@ export class LoginComponent{
 
   remindPassword(){
     this.router.navigate(["/login/identify"]);
+  }
+
+  test(){
+    console.log("test");
   }
 }

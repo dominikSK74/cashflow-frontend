@@ -123,3 +123,22 @@ mat-hint {
 a:hover{
   color: var(--main-color);
 }
+
+#icons {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 155px;
+  height: 75px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon-btn {
+  margin-top: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.icon-btn:hover {
+  transform: scale(1.2);
+}

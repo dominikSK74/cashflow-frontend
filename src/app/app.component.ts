@@ -22,7 +22,28 @@ export class AppComponent implements OnInit{
   innerWidth = window.innerWidth;
 
   ngOnInit() {
-    this.settingsService.getSettings();
+
+    if(!localStorage.getItem('token')){
+      if(!this.settingsService.getChartType()){
+        this.settingsService.setChartType('doughnut');
+      }
+
+      if(!this.settingsService.getChartTimeRange()){
+        this.settingsService.setChartTimeRange('month');
+      }
+
+      if(!this.settingsService.getTheme()){
+        this.settingsService.setTheme('light');
+      }
+
+      if(!this.settingsService.getLanguage()){
+        this.settingsService.setLanguage('en');
+      }
+
+    }else{
+      this.settingsService.getSettings();
+    }
+
     let language = this.settingsService.getLanguage();
 
     if(language === 'pl'){
