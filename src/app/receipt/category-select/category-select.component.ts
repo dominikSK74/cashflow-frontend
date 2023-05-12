@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from "../../services/category.service";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {AddPrivateCategoryComponent} from "../add-private-category/add-private-category.component";
 import {SettingsService} from "../../services/settings.service";
 
@@ -13,6 +13,9 @@ export class CategorySelectComponent implements OnInit{
   items = [];
   selectedItem: any;
   darkMode : boolean = false;
+
+  // @ts-ignore
+  dialogRef : MatDialogRef<AddPrivateCategoryComponent>;
 
   constructor(private categoryService:CategoryService,
               private dialog:MatDialog,
@@ -42,6 +45,17 @@ export class CategorySelectComponent implements OnInit{
 
   addNewCategory(){
     this.selectedItem = undefined;
-    this.dialog.open(AddPrivateCategoryComponent);
+    this.dialogRef = this.dialog.open(AddPrivateCategoryComponent);
+
+    this.dialogRef.afterClosed().subscribe(()=>{
+      this.items = [];
+      this.categoryService.getCategories().subscribe((data)=> {
+        let category = JSON.parse(data);
+        for (let i = 0; i < category.length; i++){
+          //@ts-ignore
+          this.items.push(category[i]);
+        }
+      })
+    });
   }
 }
