@@ -1,21 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
 import {SnackBarService} from "../../services/snack-bar.service";
 import {SettingsService} from "../../services/settings.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent implements OnInit{
+
+  darkMode : boolean = false;
 
   constructor(private router:Router,
               private loginService:LoginService,
               private snackBarService:SnackBarService,
-              private settingsService: SettingsService) {
+              private settingsService: SettingsService,
+              private translate : TranslateService) {
+  }
+
+  ngOnInit(): void {
+    if(this.settingsService.getTheme() === "dark"){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+    }
+
+    setTimeout(()=>{
+      this.checkButtons();
+    }, 10)
   }
 
   loginForm = new FormGroup({
@@ -34,9 +50,9 @@ export class LoginComponent{
         },
         () => {
           if(this.loginForm.valid){
-            this.snackBarService.openRedSnackBar("Incorrect password or email")
+            this.snackBarService.openRedSnackBar(this.translate.instant('INCORRECT_DATA'));
           }else{
-            this.snackBarService.openRedSnackBar("Invalid data");
+            this.snackBarService.openRedSnackBar(this.translate.instant('INVALID_DATA'));
           }
         });
   }
@@ -57,7 +73,72 @@ export class LoginComponent{
     this.router.navigate(["/login/identify"]);
   }
 
-  test(){
-    console.log("test");
+  changeTheme(theme : string){
+    this.settingsService.setTheme(theme);
+    this.checkButtons();
+    setTimeout(()=>{
+      window.location.reload();
+    }, 60)
+  }
+
+  changeLang(lang : string){
+    this.settingsService.setLanguage(lang);
+    this.translate.use(lang);
+    this.checkButtons();
+  }
+
+  checkButtons(){
+    let lang = this.settingsService.getLanguage();
+    let theme = this.settingsService.getTheme();
+
+    if(theme === 'light'){
+      // @ts-ignore
+      document.getElementById('dark-mode-icon').style.display = 'block';
+      // @ts-ignore
+      document.getElementById('light-mode-icon').style.display = 'none';
+      if(lang === 'pl'){
+        // @ts-ignore
+        document.getElementById('en-icon').style.display = 'block';
+        // @ts-ignore
+        document.getElementById('en-dark-icon').style.display = 'none';
+        // @ts-ignore
+        document.getElementById('pl-dark-icon').style.display = 'none';
+        // @ts-ignore
+        document.getElementById('pl-icon').style.display = 'none';
+      }else{
+        // @ts-ignore
+        document.getElementById('en-icon').style.display = 'none';
+        // @ts-ignore
+        document.getElementById('en-dark-icon').style.display = 'none';
+        // @ts-ignore
+        document.getElementById('pl-dark-icon').style.display = 'none';
+        // @ts-ignore
+        document.getElementById('pl-icon').style.display = 'block';
+      }
+    }else{
+      // @ts-ignore
+      document.getElementById('dark-mode-icon').style.display = 'none';
+      // @ts-ignore
+      document.getElementById('light-mode-icon').style.display = 'block';
+      if(lang === 'pl'){
+        // @ts-ignore
+        document.getElementById('en-icon').style.display = 'none';
+        // @ts-ignore
+        document.getElementById('en-dark-icon').style.display = 'block';
+        // @ts-ignore
+        document.getElementById('pl-dark-icon').style.display = 'none';
+        // @ts-ignore
+        document.getElementById('pl-icon').style.display = 'none';
+      }else{
+        // @ts-ignore
+        document.getElementById('en-icon').style.display = 'none';
+        // @ts-ignore
+        document.getElementById('en-dark-icon').style.display = 'none';
+        // @ts-ignore
+        document.getElementById('pl-dark-icon').style.display = 'block';
+        // @ts-ignore
+        document.getElementById('pl-icon').style.display = 'none';
+      }
+    }
   }
 }

@@ -1,31 +1,35 @@
-<section class="main">
+<section class="main" [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
   <img id="wave" src="../../../assets/images/wave.png">
   <div id="img">
     <img id="phone" src="../../../assets/images/phone.png">
   </div>
 
   <div id="icons">
-      <img src="assets/images/darkmode_icon.png" width="60" height="60" (click)="test()" id="dark-mode-icon" class="icon-btn">
-      <img src="assets/images/pl_icon.png" width="60" height="60" id="pl-icon" class="icon-btn">
+      <img src="assets/images/darkmode_icon.png" width="60" height="60" (click)="changeTheme('dark')" id="dark-mode-icon" class="icon-btn">
+      <img src="assets/images/lightmode_icon.png" width="60" height="60" (click)="changeTheme('light')" id="light-mode-icon" class="icon-btn">
+      <img src="assets/images/pl_icon.png" width="60" height="60" id="pl-icon" class="icon-btn" (click)="changeLang('pl')">
+      <img src="assets/images/en_icon.png" width="60" height="60" id="en-icon" class="icon-btn" (click)="changeLang('en')">
+      <img src="assets/images/pl_dark_icon.png" width="60" height="60" id="pl-dark-icon" class="icon-btn" (click)="changeLang('pl')">
+      <img src="assets/images/en_dark_icon.png" width="60" height="60" id="en-dark-icon" class="icon-btn" (click)="changeLang('en')">
   </div>
 
   <form [formGroup]="loginForm">
     <img id="logo" src="../../../assets/images/logo.png">
     <br>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
       <input matInput placeholder="Email" formControlName="email" required>
-      <mat-hint *ngIf="email && email.invalid && email.touched">Invalid email</mat-hint>
+      <mat-hint *ngIf="email && email.invalid && email.touched">{{ 'LOGIN_INVALID_EMAIL' | translate }}</mat-hint>
     </mat-form-field>
     <br>
-    <mat-form-field appearance="outline">
-      <input matInput type="password" placeholder="Password" formControlName="password" required>
-      <mat-hint *ngIf="password && password.invalid && password.touched">Invalid password</mat-hint>
+    <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
+      <input matInput type="password" placeholder="{{ 'LOGIN_PASSWORD' | translate }}" formControlName="password" required>
+      <mat-hint *ngIf="password && password.invalid && password.touched">{{ 'LOGIN_INVALID_PASSWORD' | translate }}</mat-hint>
     </mat-form-field>
     <br>
-    <a class="forgot-pass" (click)="remindPassword()">Forgot password?</a>
+    <a class="forgot-pass" (click)="remindPassword()" [ngClass]="{'dark-a': darkMode}">{{ 'LOGIN_FORGOT' | translate }}</a>
     <br>
-    <button mat-raised-button (click)="loginUser()">Login</button>
+    <button mat-raised-button (click)="loginUser()"  [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">{{ 'LOGIN_LOGIN' | translate }}</button>
     <br>
-    <a class="sign-up" (click)="register()">Don't have an account? Sign Up</a>
+    <a class="sign-up" (click)="register()" [ngClass]="{'dark-a': darkMode}">{{ 'LOGIN_REGISTER' | translate }}</a>
   </form>
 </section>

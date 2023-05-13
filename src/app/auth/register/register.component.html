@@ -1,28 +1,41 @@
-<section class="main">
+<section class="main" [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
+
   <img id="wave" src="../../../assets/images/wave.png">
   <div id="img">
     <img id="phone" src="../../../assets/images/phone.png">
   </div>
+
+  <div id="icons">
+    <img src="assets/images/darkmode_icon.png" width="60" height="60" (click)="changeTheme('dark')" id="dark-mode-icon" class="icon-btn">
+    <img src="assets/images/lightmode_icon.png" width="60" height="60" (click)="changeTheme('light')" id="light-mode-icon" class="icon-btn">
+    <img src="assets/images/pl_icon.png" width="60" height="60" id="pl-icon" class="icon-btn" (click)="changeLang('pl')">
+    <img src="assets/images/en_icon.png" width="60" height="60" id="en-icon" class="icon-btn" (click)="changeLang('en')">
+    <img src="assets/images/pl_dark_icon.png" width="60" height="60" id="pl-dark-icon" class="icon-btn" (click)="changeLang('pl')">
+    <img src="assets/images/en_dark_icon.png" width="60" height="60" id="en-dark-icon" class="icon-btn" (click)="changeLang('en')">
+  </div>
+
+
   <form [formGroup]="registerForm">
+
     <img id="logo" src="../../../assets/images/logo.png">
     <br>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
       <input matInput placeholder="Email" formControlName="email" required>
-      <mat-hint *ngIf="email && email.invalid && email.touched">Invalid email</mat-hint>
+      <mat-hint *ngIf="email && email.invalid && email.touched">{{ 'LOGIN_INVALID_EMAIL' | translate }}</mat-hint>
     </mat-form-field>
     <br>
-    <mat-form-field appearance="outline">
-      <input matInput type="password" placeholder="Password" formControlName="password" required>
-      <mat-hint *ngIf="password && password.invalid && password.touched">Invalid password</mat-hint>
+    <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
+      <input matInput type="password" placeholder="{{ 'LOGIN_PASSWORD' | translate }}" formControlName="password" required>
+      <mat-hint *ngIf="password && password.invalid && password.touched">{{ 'LOGIN_INVALID_PASSWORD' | translate }}</mat-hint>
     </mat-form-field>
     <br>
-    <mat-form-field appearance="outline">
-      <input matInput type="password" placeholder="Confirm password" formControlName="password1" required>
-      <mat-hint *ngIf="passwordMatchError">Password not a match</mat-hint>
+    <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
+      <input matInput type="password" placeholder="{{ 'REGISTER_CONFIRM_PASS' | translate }}" formControlName="password1" required>
+      <mat-hint *ngIf="passwordMatchError">{{ 'REGISTER_NOT_MATCH' | translate }}</mat-hint>
     </mat-form-field>
     <br>
-    <button mat-raised-button (click)="register()">Register</button>
+    <button mat-raised-button (click)="register()" [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">{{ 'REGISTER_REGISTER' | translate }}</button>
     <br>
-    <a class="log-in" (click)="login()">Have already an account? Login here</a>
+    <a class="log-in" (click)="login()" [ngClass]="{'dark-a': darkMode}">{{ 'REGISTER_LOGIN' | translate }}</a>
   </form>
 </section>
