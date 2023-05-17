@@ -66,5 +66,6 @@
     "FORGOT_LOGIN" : "Go back to the login page",
     "FORGOT_TITLE" : "remind password",
     "FORGOT_LINK" : "Link sent",
-    "SETTINGS_MANGE_EXPENSES" : "Manage expenses"
+    "SETTINGS_MANAGE_EXPENSES" : "Manage expenses",
+    "SNACKBAR_DELETE_EXPENSE" : "The product has been deleted"
 }

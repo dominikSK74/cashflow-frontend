@@ -1,0 +1,30 @@
+<section id="main" [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
+  <div id="img">
+    <img id="settings-png" src="assets/images/settings.png">
+  </div>
+
+  <div id="mainBox">
+    <div id="wrapper">
+      <p [ngClass]="{'text-dark': darkMode}"
+         *ngFor="let item of expenses; let i = index;">
+
+        <button id="delete" mat-icon-button (click)="delete(item.id)">
+          <mat-icon [ngClass]="{'text-dark': darkMode}">close</mat-icon>
+        </button>
+
+        <button id="edit" mat-icon-button (click)="editProduct(item.id)">
+          <mat-icon [ngClass]="{'text-dark': darkMode}">edit</mat-icon>
+        </button>
+
+        <br>
+
+        {{ 'FORM_NAME' | translate }}: {{item["name"]}}<br>
+        {{ 'FORM_COST' | translate }}: {{item["cost"]}}<br>
+        {{ 'FORM_CATEGORY' | translate }}: {{item["categories"]}}<br>
+        {{ 'DATE' | translate }}: {{item["date"]}}<br><br>
+
+        <mat-divider [ngClass]="{'mat-divider-dark': darkMode}"></mat-divider>
+      </p>
+    </div>
+  </div>
+</section>

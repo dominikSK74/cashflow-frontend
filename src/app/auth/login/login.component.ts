@@ -44,9 +44,9 @@ export class LoginComponent implements OnInit{
       .subscribe(() => {
           this.router.navigate(["/home"]);
           this.settingsService.getSettings();
-          setTimeout(()=>{
-            window.location.reload();
-          }, 60)
+          // setTimeout(()=>{
+          //   window.location.reload();
+          // }, 60)
         },
         () => {
           if(this.loginForm.valid){
@@ -76,9 +76,11 @@ export class LoginComponent implements OnInit{
   changeTheme(theme : string){
     this.settingsService.setTheme(theme);
     this.checkButtons();
-    setTimeout(()=>{
-      window.location.reload();
-    }, 60)
+    if(theme === 'dark'){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+    }
   }
 
   changeLang(lang : string){

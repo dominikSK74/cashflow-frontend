@@ -6,6 +6,7 @@ import {ExpensesResponse} from "./expensesResponse";
 import {SettingsService} from "../services/settings.service";
 import {SnackBarService} from "../services/snack-bar.service";
 import {MonthEnumPl} from "../enums/month-enum-pl";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-home',
@@ -103,47 +104,66 @@ export class HomeComponent implements OnInit {
 
   constructor(private homeService : HomeService,
               private settingsService : SettingsService,
-              private snackBarService : SnackBarService) { }
+              private snackBarService : SnackBarService,
+              private translate : TranslateService) { }
 
   ngOnInit(): void {
 
-    if(this.settingsService.getTheme() === "dark"){
-      this.darkMode = true;
-    }else{
-      this.darkMode = false;
-      this.chartBorderColor = "#fef7f1";
-      this.chartColor = "#41403F";
-    }
+    setTimeout(()=>{
+      if(this.settingsService.getTheme() === "dark"){
+        this.darkMode = true;
+      }else{
+        this.darkMode = false;
+        this.chartBorderColor = "#fef7f1";
+        this.chartColor = "#41403F";
+      }
 
-    if(this.settingsService.getLanguage() === 'pl'){
-      this.cost = "koszt: ";
-    }else{
-      this.cost = "cost: ";
-    }
+      if(this.settingsService.getLanguage() === 'pl'){
+        this.cost = "koszt: ";
+        this.translate.use('pl');
+      }else{
+        this.cost = "cost: ";
+        this.translate.use("en");
+      }
 
-    // @ts-ignore
-    this.chartType = this.settingsService.getChartType();
-    // @ts-ignore
-    this.chartTimeRange = this.settingsService.getChartTimeRange();
+      if(this.settingsService.getTheme() === "dark"){
+        this.darkMode = true;
+      }else{
+        this.darkMode = false;
+        this.chartBorderColor = "#fef7f1";
+        this.chartColor = "#41403F";
+      }
 
-    if(this.chartTimeRange === "month"){
-      this.setCurrentDate();
-      this.setTitleTextByMonth();
-      this.getChartDataByMonth();
-    }else if(this.chartTimeRange === "year"){
-      this.setYear();
-      this.setTitleTextByYear();
-      this.getChartDataByYear();
-    }else if(this.chartTimeRange === "day"){
-      this.setCurrentDate();
-      this.setTitleTextByDay();
-      this.getChartDataByDay();
-    }else if(this.chartTimeRange === "week"){
-      this.setDateByWeek();
-      this.getChartDataByWeek();
-    }else{
-      this.snackBarService.openRedSnackBar("Something went wrong. Refresh the page.");
-    }
+      if(this.settingsService.getLanguage() === 'pl'){
+        this.cost = "koszt: ";
+      }else{
+        this.cost = "cost: ";
+      }
+
+      // @ts-ignore
+      this.chartType = this.settingsService.getChartType();
+      // @ts-ignore
+      this.chartTimeRange = this.settingsService.getChartTimeRange();
+
+      if(this.chartTimeRange === "month"){
+        this.setCurrentDate();
+        this.setTitleTextByMonth();
+        this.getChartDataByMonth();
+      }else if(this.chartTimeRange === "year"){
+        this.setYear();
+        this.setTitleTextByYear();
+        this.getChartDataByYear();
+      }else if(this.chartTimeRange === "day"){
+        this.setCurrentDate();
+        this.setTitleTextByDay();
+        this.getChartDataByDay();
+      }else if(this.chartTimeRange === "week"){
+        this.setDateByWeek();
+        this.getChartDataByWeek();
+      }else{
+        this.snackBarService.openRedSnackBar("Something went wrong. Refresh the page.");
+      }
+    }, 100)
   }
 
   setDateByWeek(){
@@ -239,8 +259,8 @@ export class HomeComponent implements OnInit {
           // @ts-ignore
           document.getElementById("noData").style.display = "none";
         }else{
-          // @ts-ignore
-          document.getElementById("noData").style.display = "block";
+            // @ts-ignore
+            document.getElementById("noData").style.display = "block";
         }
       });
   }

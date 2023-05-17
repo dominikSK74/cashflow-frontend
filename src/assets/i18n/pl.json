@@ -66,5 +66,6 @@
     "FORGOT_LOGIN" : "Wróć do strony logowania",
     "FORGOT_TITLE" : "przypomnij hasło",
     "FORGOT_LINK" : "Wysłano link",
-    "SETTINGS_MANGE_EXPENSES" : "Zarządzaj wydatkami"
+    "SETTINGS_MANAGE_EXPENSES" : "Zarządzaj wydatkami",
+    "SNACKBAR_DELETE_EXPENSE" : "Produkt został usunięty"
 }

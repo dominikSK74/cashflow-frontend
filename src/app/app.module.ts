@@ -37,6 +37,8 @@ import { EditProductComponent } from './receipt/edit-product/edit-product.compon
 import {MatLegacySelectModule} from "@angular/material/legacy-select";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ManageExpensesComponent } from './settings/manage-expenses/manage-expenses.component';
+import { ManageExpenseEditComponent } from './settings/manage-expenses/manage-expense-edit/manage-expense-edit.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     CategorySelectComponent,
     AddPrivateCategoryComponent,
     CategorySelectByImageComponent,
-    EditProductComponent
+    EditProductComponent,
+    ManageExpensesComponent,
+    ManageExpenseEditComponent
   ],
   imports: [
     BrowserModule,

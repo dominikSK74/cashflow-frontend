@@ -23,35 +23,39 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
 
-    if(!localStorage.getItem('token')){
-      if(!this.settingsService.getChartType()){
-        this.settingsService.setChartType('doughnut');
+
+    setTimeout(()=>{
+
+      if(!localStorage.getItem('token')){
+        if(!this.settingsService.getChartType()){
+          this.settingsService.setChartType('doughnut');
+        }
+
+        if(!this.settingsService.getChartTimeRange()){
+          this.settingsService.setChartTimeRange('month');
+        }
+
+        if(!this.settingsService.getTheme()){
+          this.settingsService.setTheme('light');
+        }
+
+        if(!this.settingsService.getLanguage()){
+          this.settingsService.setLanguage('en');
+        }
+
+      }else{
+        this.settingsService.getSettings();
       }
 
-      if(!this.settingsService.getChartTimeRange()){
-        this.settingsService.setChartTimeRange('month');
+      let language = this.settingsService.getLanguage();
+
+      if(language === 'pl'){
+        this.translate.setDefaultLang('pl');
+        this.translate.use('pl');
+      }else{
+        this.translate.setDefaultLang('en');
+        this.translate.use('en');
       }
-
-      if(!this.settingsService.getTheme()){
-        this.settingsService.setTheme('light');
-      }
-
-      if(!this.settingsService.getLanguage()){
-        this.settingsService.setLanguage('en');
-      }
-
-    }else{
-      this.settingsService.getSettings();
-    }
-
-    let language = this.settingsService.getLanguage();
-
-    if(language === 'pl'){
-      this.translate.setDefaultLang('pl');
-      this.translate.use('pl');
-    }else{
-      this.translate.setDefaultLang('en');
-      this.translate.use('en');
-    }
+    }, 120)
   }
 }

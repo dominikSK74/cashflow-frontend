@@ -51,9 +51,11 @@ export class ForgotPasswordComponent implements OnInit{
   changeTheme(theme : string){
     this.settingsService.setTheme(theme);
     this.checkButtons();
-    setTimeout(()=>{
-      window.location.reload();
-    }, 60)
+    if(theme === 'dark'){
+      this.darkMode = true;
+    }else{
+      this.darkMode = false;
+    }
   }
 
   changeLang(lang : string){

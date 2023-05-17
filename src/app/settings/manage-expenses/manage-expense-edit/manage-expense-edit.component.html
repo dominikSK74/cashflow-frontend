@@ -1,0 +1,35 @@
+<section id="main" [ngClass]="{'light-theme': !darkMode, 'dark-theme': darkMode}">
+  <div id="box">
+    <button mat-icon-button (click)="back()">
+      <mat-icon [ngClass]="{'mat-icon-dark': darkMode}">close</mat-icon>
+    </button><br>
+    <mat-form-field appearance="outline" floatLabel="auto" class="margin" [ngClass]="{'dark-form': darkMode}">
+      <mat-label>{{ 'FORM_NAME' | translate }}</mat-label>
+      <input matInput [(ngModel)]="product.name"  #name="ngModel" required>
+      <mat-hint *ngIf="name.invalid && (name.dirty || name.touched)">{{ 'FORM_NAME_ERR' | translate }}</mat-hint>
+    </mat-form-field><br>
+
+    <mat-form-field appearance="outline" floatLabel="auto" class="margin" [ngClass]="{'dark-form': darkMode}">
+      <mat-label>{{ 'FORM_COST' | translate }}</mat-label>
+      <input matInput pattern="^[0-9]+(\.[0-9]{1,2})?$" [(ngModel)]="product.cost" #cost="ngModel" required>
+      <mat-hint *ngIf="cost.invalid && (cost.dirty || cost.touched)">{{ 'FORM_COST_ERR' | translate }}: <b>X.XX</b> (X=[0-9])</mat-hint>
+    </mat-form-field><br>
+
+    <mat-form-field appearance="outline" id="category" [ngClass]="{'dark-form': darkMode}" (click)="selectCategoryDialog()">
+      <mat-label>{{ 'FORM_CATEGORY' | translate }}</mat-label>
+      <input matInput [(ngModel)]="product.categories" #categories="ngModel" readonly required>
+      <mat-hint *ngIf="categories.invalid && (categories.dirty || categories.touched)">{{ 'FORM_CATEGORY_ERR' | translate }}</mat-hint>
+    </mat-form-field><br>
+
+    <mat-form-field appearance="outline" id="picker" [ngClass]="{'dark-form': darkMode}">
+      <mat-label>{{ 'FORM_DATE' | translate }}</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="product.date" #date="ngModel" readonly required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-hint *ngIf="date.invalid && (date.dirty || date.touched)">{{ 'FORM_DATE_ERR' | translate }}</mat-hint>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field><br>
+
+    <button id="confirm" mat-raised-button
+            [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}" (click)="confirm()">{{ 'CONFIRM' | translate}}</button>
+  </div>
+</section>

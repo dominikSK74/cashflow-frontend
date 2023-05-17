@@ -93,11 +93,15 @@ export class SettingsComponent implements OnInit {
 
     setTimeout(()=>{
       window.location.reload();
-    }, 60)
+    }, 200)
   }
 
   logout(){
     this.tokenService.removeToken();
     this.router.navigate(["/login"]);
+  }
+
+  manageExpenses(){
+    this.router.navigate(["/settings/manage-expenses"]);
   }
 }

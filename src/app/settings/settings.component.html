@@ -5,6 +5,10 @@
 
   <div id="mainBox">
     <div id="wrapper">
+      <button mat-raised-button class="btn" id="manage-expenses" (click)="manageExpenses()"
+              [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">
+        {{ 'SETTINGS_MANAGE_EXPENSES' | translate }}</button>
+
       <mat-form-field appearance="outline" [ngClass]="{'dark-form': darkMode}">
         <mat-label>{{ 'SETTINGS_CHART_TYPE' | translate }}</mat-label>
         <mat-select [(ngModel)]="selectedChartType">
@@ -40,7 +44,7 @@
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button id="save" (click)="saveData()"
+      <button mat-raised-button class="btn" (click)="saveData()"
               [ngClass]="{'button-light': !darkMode, 'button-dark': darkMode}">{{ 'SAVE' | translate }}</button>
 
       <button mat-raised-button id="logout" (click)="logout()">{{ 'LOGOUT' | translate }}</button>
